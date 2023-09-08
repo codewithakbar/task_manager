@@ -15,4 +15,5 @@ django-modeltranslation
 whitenoise
 django-ckeditor
 
-
+psycopg2-binary
+python-decouple
