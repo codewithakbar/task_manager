@@ -21,25 +21,40 @@ from django.conf.urls.static import static
 from django.views.static import serve
 from django.conf.urls.i18n import i18n_patterns
 
-
 from rest_framework import routers
+from rest_framework_simplejwt.views import (
+    TokenRefreshView,
+)
+from trello.views import BoardViewSet, CardViewSet, ListViewSet
+
+from users.views import RegisterView, LoginAPIView, LogoutAPIView
+
 
 
 router = routers.DefaultRouter()
-# router.register('banners', BannerViewSet, basename='banner')
-# router.register(r'rax/(?P<category_id>\d+)', RaxbariyatViewSet, basename='raxbarlar')
+# router.register(r'register', RegistrationAPIView, basename='register')
+# router.register(r'login', LoginAPIView, basename='login')
+router.register(r'boards', BoardViewSet)
+router.register(r'lists', ListViewSet)
+router.register(r'cards', CardViewSet)
+
 
 
 urlpatterns = [
     
     path('admin/', admin.site.urls),
-    path("api-auth/", include("rest_framework.urls")),
-    path("", include(router.urls))
+
+    path('register/',RegisterView.as_view(),name="register"),
+    path('login/',LoginAPIView.as_view(),name="login"),
+    path('logout/', LogoutAPIView.as_view(), name="logout"),
+    path('routers/', include(router.urls)),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
+
+    # path("api-auth/", include("rest_framework.urls")),
+    # path("", include(router.urls))
 ]
 
-urlpatterns = [
-    *i18n_patterns(*urlpatterns, prefix_default_language=False),
-]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
