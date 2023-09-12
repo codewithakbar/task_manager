@@ -21,13 +21,14 @@ from django.conf.urls.static import static
 from django.views.static import serve
 from django.conf.urls.i18n import i18n_patterns
 
+from rest_framework_simplejwt import views as jwt_views
 from rest_framework import routers
 from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 from trello.views import BoardViewSet, CardViewSet, ListViewSet
 
-from users.views import RegisterView, LoginAPIView, LogoutAPIView
+from users.views import MarkNotificationAsReadView, NotificationListView, RegisterView, LoginAPIView, LogoutAPIView
 
 
 
@@ -44,11 +45,25 @@ urlpatterns = [
     
     path('admin/', admin.site.urls),
 
+    # users
     path('register/',RegisterView.as_view(),name="register"),
     path('login/',LoginAPIView.as_view(),name="login"),
     path('logout/', LogoutAPIView.as_view(), name="logout"),
+    path('notifications/', NotificationListView.as_view(), name='notification-list'),
+    path('notifications/mark-read/', MarkNotificationAsReadView.as_view(), name='mark-notification-read'),
+
+
+
     path('routers/', include(router.urls)),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
+    path('token/', 
+          jwt_views.TokenObtainPairView.as_view(), 
+          name ='token_obtain_pair'),
+     path('token/refresh/', 
+          jwt_views.TokenRefreshView.as_view(), 
+          name ='token_refresh')
+
 
 
     # path("api-auth/", include("rest_framework.urls")),

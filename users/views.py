@@ -2,7 +2,9 @@ from rest_framework import generics,status,views,permissions
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
-from .serializers import RegisterSerializer,LoginSerializer,LogoutSerializer
+
+from users.models import Notification
+from .serializers import NotificationSerializer, RegisterSerializer,LoginSerializer,LogoutSerializer
 
 
 class RegisterView(generics.GenericAPIView):
@@ -35,3 +37,27 @@ class LogoutAPIView(generics.GenericAPIView):
         serializer.save()
         return Response(status=status.HTTP_204_NO_CONTENT)
     
+
+
+
+class NotificationListView(generics.ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = NotificationSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        return Notification.objects.filter(user=user).order_by('-created_at')
+
+
+
+class MarkNotificationAsReadView(generics.UpdateAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = NotificationSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        return Notification.objects.filter(user=user, is_read=False)
+
+    def perform_update(self, serializer):
+        serializer.save(is_read=True)
+
