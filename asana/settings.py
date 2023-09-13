@@ -46,12 +46,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     "rest_framework",
-    'users',
-    'trello',
-    "rest_framework_simplejwt.token_blacklist",
     "corsheaders",
+    "rest_framework_simplejwt.token_blacklist",
     'ckeditor',
 
+    'users',
+    'trello',
     'mptt',
 
 
