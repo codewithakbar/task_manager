@@ -3,8 +3,9 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 
-from users.models import Notification
-from .serializers import NotificationSerializer, RegisterSerializer,LoginSerializer,LogoutSerializer
+from .permissions import IsNotStaffUser
+from users.models import CustomUser, Notification
+from .serializers import CustomUserSerializer, NotificationSerializer, RegisterSerializer,LoginSerializer,LogoutSerializer
 
 
 class RegisterView(generics.GenericAPIView):
@@ -61,3 +62,18 @@ class MarkNotificationAsReadView(generics.UpdateAPIView):
     def perform_update(self, serializer):
         serializer.save(is_read=True)
 
+
+
+class CustomUserListCreateView(generics.ListCreateAPIView):
+    serializer_class = CustomUserSerializer
+
+    def get_queryset(self):
+        return CustomUser.objects.filter(is_staff=False)
+
+
+
+class CustomUserDetailView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = CustomUserSerializer
+
+    def get_queryset(self):
+        return CustomUser.objects.filter(is_staff=False)

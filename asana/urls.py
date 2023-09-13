@@ -28,7 +28,7 @@ from rest_framework_simplejwt.views import (
 )
 from trello.views import BoardViewSet, CardViewSet, ListViewSet
 
-from users.views import MarkNotificationAsReadView, NotificationListView, RegisterView, LoginAPIView, LogoutAPIView
+from users.views import CustomUserDetailView, CustomUserListCreateView, MarkNotificationAsReadView, NotificationListView, RegisterView, LoginAPIView, LogoutAPIView
 
 
 
@@ -49,6 +49,10 @@ urlpatterns = [
     path('register/',RegisterView.as_view(),name="register"),
     path('login/',LoginAPIView.as_view(),name="login"),
     path('logout/', LogoutAPIView.as_view(), name="logout"),
+
+    path('users/', CustomUserListCreateView.as_view(), name='user-list'),
+    path('users/<int:pk>/', CustomUserDetailView.as_view(), name='user-detail'),
+
     path('notifications/', NotificationListView.as_view(), name='notification-list'),
     path('notifications/mark-read/', MarkNotificationAsReadView.as_view(), name='mark-notification-read'),
 
