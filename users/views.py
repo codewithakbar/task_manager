@@ -64,7 +64,7 @@ class MarkNotificationAsReadView(generics.UpdateAPIView):
 
 
 
-class CustomUserListCreateView(generics.ListCreateAPIView):
+class CustomUserListCreateView(generics.ListAPIView):
     serializer_class = CustomUserSerializer
 
     def get_queryset(self):
