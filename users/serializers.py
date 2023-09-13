@@ -11,14 +11,14 @@ class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ('id', 'username', 'email', 'is_staff', 'image')
-    
+
 
 
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(max_length=68, min_length=6, write_only=True)
     class Meta:
         model = CustomUser
-        fields = ['email', 'username', 'password']
+        fields = ['email', 'username', 'password', 'image']
     def validate(self, attrs):
         email = attrs.get('email', '')
         username = attrs.get('username', '')
