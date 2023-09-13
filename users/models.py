@@ -17,9 +17,11 @@ class CustomUser(AbstractUser):
 
     def tokens(self):
         refresh = RefreshToken.for_user(self)
+        status = self.is_staff
         return{
             'refresh':str(refresh),
-            'access':str(refresh.access_token)
+            'access':str(refresh.access_token),
+            'status': str(status)
         }
 
 
