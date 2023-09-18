@@ -17,3 +17,5 @@ django-ckeditor
 
 psycopg2-binary
 python-decouple
+
+django-jazzmin
