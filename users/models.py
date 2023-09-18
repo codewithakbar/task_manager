@@ -9,7 +9,7 @@ class CustomUser(AbstractUser):
 
 
     email = models.EmailField(max_length=255, unique=True, db_index=True)
-    image = models.ImageField(upload_to='profile/%Y/%m/%d', null=True, blank=True)
+    profile_image = models.ImageField(upload_to='profile/%Y/%m/%d', null=True, blank=True)
     full_name = models.CharField(max_length=233, null=True, blank=True)
 
     def __str__(self):
@@ -27,7 +27,7 @@ class CustomUser(AbstractUser):
 
 
 class Notification(models.Model):
-    # user = models.ForeignKey(to=CustomUser, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(to=CustomUser, on_delete=models.CASCADE, null=True, blank=True)
     message = models.TextField()
     is_read = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
