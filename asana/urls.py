@@ -36,8 +36,9 @@ router = routers.DefaultRouter()
 # router.register(r'register', RegistrationAPIView, basename='register')
 # router.register(r'login', LoginAPIView, basename='login')
 router.register(r'boards', BoardViewSet)
-router.register(r'lists', ListViewSet)
+router.register(r'lists/(?P<board_id>\d+)/', ListViewSet, basename='list_by_boards')
 router.register(r'cards', CardViewSet)
+
 
 
 
