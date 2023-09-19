@@ -14,12 +14,12 @@ class BoardViewSet(viewsets.ModelViewSet):
 
 
 class ListViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]    
     serializer_class = ListSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
-        board_id = self.kwargs['board_id']
-        queryset = List.objects.filter(board__id=board_id)
+        category_id = self.kwargs['category_id']
+        queryset = List.objects.filter(board__id=category_id)
         return queryset
 
 
