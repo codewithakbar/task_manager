@@ -11,13 +11,18 @@ class BoardViewSet(viewsets.ModelViewSet):
     serializer_class = BoardSerializer
 
 
+
+
 class ListViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]    
     serializer_class = ListSerializer
 
     def get_queryset(self):
         board_id = self.kwargs['board_id']
-        return List.objects.filter(board__id=board_id)
+        queryset = List.objects.filter(board__id=board_id)
+        return queryset
+
+
 
 class CardViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
