@@ -1,4 +1,3 @@
-
 from rest_framework import viewsets, permissions
 from .models import Board, List, Card
 from .serializers import BoardSerializer, ListSerializer, CardSerializer
@@ -6,7 +5,7 @@ from .serializers import BoardSerializer, ListSerializer, CardSerializer
 
 
 class BoardViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, permissions.IsAdminUser]
     queryset = Board.objects.all()
     serializer_class = BoardSerializer
 
