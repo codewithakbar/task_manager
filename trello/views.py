@@ -5,7 +5,7 @@ from .serializers import BoardSerializer, ListSerializer, CardSerializer
 
 
 class BoardViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly, permissions.IsAdminUser]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Board.objects.all()
     serializer_class = BoardSerializer
 
