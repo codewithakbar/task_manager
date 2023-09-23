@@ -19,3 +19,4 @@ psycopg2-binary
 python-decouple
 
 django-jazzmin
+django-rest-knox

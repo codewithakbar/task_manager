@@ -2,10 +2,25 @@ from rest_framework import generics,status,views,permissions
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.authtoken.models import Token
+from rest_framework.views import APIView
+from rest_framework.authtoken.serializers import AuthTokenSerializer
+
 
 from .permissions import IsNotStaffUser
 from users.models import CustomUser, Notification
 from .serializers import CustomUserSerializer, NotificationSerializer, RegisterSerializer,LoginSerializer,LogoutSerializer
+
+
+from django.utils.decorators import method_decorator
+from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_exempt
+from django.views import View
+from django.http import JsonResponse
+from django.contrib.auth import authenticate, login, logout
+from django.views.decorators.csrf import csrf_exempt
+
+from knox.views import LoginView as KnoxLoginView
 
 
 class RegisterView(generics.GenericAPIView):
@@ -20,12 +35,28 @@ class RegisterView(generics.GenericAPIView):
 
 
 
-class LoginAPIView(generics.GenericAPIView):
-    serializer_class = LoginSerializer
-    def post(self,request):
-        serializer = self.serializer_class(data=request.data)
+class LoginView(KnoxLoginView):
+    permission_classes = (permissions.AllowAny, )    
+
+    def post(self, request, format=None):
+        
+        serializer = AuthTokenSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        return Response(serializer.data,status=status.HTTP_200_OK)
+
+        user = serializer.validated_data['user']
+        login(request, user)
+
+        return super(LoginView, self).post(request, format=None)
+
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class LogoutView(View):
+    @require_POST
+    def post(self, request):
+        # Logout the user
+        logout(request)
+        return JsonResponse({'message': 'Logout successful'})
 
 
 

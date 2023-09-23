@@ -12,17 +12,9 @@ class CustomUser(AbstractUser):
     profile_image = models.ImageField(upload_to='profile/%Y/%m/%d', null=True, blank=True)
     full_name = models.CharField(max_length=233, null=True, blank=True)
 
+
     def __str__(self):
         return self.username
-
-    def tokens(self):
-        refresh = RefreshToken.for_user(self)
-        status = self.is_staff
-        return{
-            'refresh':str(refresh),
-            'access':str(refresh.access_token),
-            'status': str(status)
-        }
 
 
 
