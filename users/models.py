@@ -12,7 +12,6 @@ class CustomUser(AbstractUser):
     profile_image = models.ImageField(upload_to='profile/%Y/%m/%d', null=True, blank=True)
     full_name = models.CharField(max_length=233, null=True, blank=True)
 
-
     def __str__(self):
         return self.username
 
