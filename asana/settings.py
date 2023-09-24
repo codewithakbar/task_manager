@@ -67,6 +67,9 @@ REST_FRAMEWORK = {
 }
 
 
+CORS_ALLOW_CREDENTIALS = True
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
