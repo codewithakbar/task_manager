@@ -13,6 +13,8 @@ class BoardViewSet(viewsets.ModelViewSet):
     queryset = Board.objects.all()
     serializer_class = BoardSerializer
 
+    http_method_names = ['get', 'post', 'head', 'options', 'delete']
+
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
         instance.delete()
