@@ -42,3 +42,12 @@ class CardViewSet(viewsets.ModelViewSet):
         category_id = self.kwargs['category_id']
         queryset = Card.objects.filter(list__id=category_id)
         return queryset
+
+
+
+class ListAllViewSet(viewsets.ModelViewSet):
+    serializer_class = ListSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    queryset = List.objects.all()
+
+
