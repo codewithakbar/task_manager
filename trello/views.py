@@ -34,8 +34,11 @@ class ListViewSet(viewsets.ModelViewSet):
 
 
 class CardViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    queryset = Card.objects.all()
     serializer_class = CardSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    # queryset = Card.objects.all()
 
-
+    def get_queryset(self):
+        category_id = self.kwargs['category_id']
+        queryset = Card.objects.filter(list__id=category_id)
+        return queryset

@@ -39,8 +39,9 @@ router = routers.DefaultRouter()
 router.register(r'boards', BoardViewSet)
 # router.register(r'lists/(?P<board_id>\d+)/', ListViewSet, basename='list_by_boards')
 router.register(r'lists/(?P<category_id>\d+)', ListViewSet, basename='texnika')
+router.register(r'cards/(?P<category_id>\d+)', CardViewSet, basename='cardd')
 
-router.register(r'cards', CardViewSet)
+# router.register(r'cards', CardViewSet)
 
 
 
