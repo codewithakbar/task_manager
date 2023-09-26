@@ -37,7 +37,7 @@ router = routers.DefaultRouter()
 # router.register(r'register', RegistrationAPIView, basename='register')
 # router.register(r'login', LoginAPIView, basename='login')
 router.register(r'boards', BoardViewSet)
-router.register(r'lists', ListAllViewSet, basename='list_all_board')
+router.register(r'list', ListAllViewSet, basename='list_all_board')
 router.register(r'lists/(?P<category_id>\d+)', ListViewSet, basename='texnika')
 router.register(r'cards/(?P<category_id>\d+)', CardViewSet, basename='cardd')
 
