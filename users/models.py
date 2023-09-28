@@ -7,7 +7,6 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 class CustomUser(AbstractUser):
 
-
     email = models.EmailField(max_length=255, unique=True, db_index=True)
     profile_image = models.ImageField(upload_to='profile/%Y/%m/%d', null=True, blank=True)
     full_name = models.CharField(max_length=233, null=True, blank=True)

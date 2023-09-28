@@ -65,3 +65,13 @@ class CreateCommentView(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 
+
+class CommentViewSet(viewsets.ModelViewSet):
+    serializer_class = CommentSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    # queryset = Card.objects.all()
+
+    def get_queryset(self):
+        category_id = self.kwargs['category_id']
+        queryset = Comment.objects.filter(card__id=category_id)
+        return queryset
