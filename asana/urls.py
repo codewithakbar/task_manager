@@ -38,6 +38,7 @@ router = routers.DefaultRouter()
 # router.register(r'login', LoginAPIView, basename='login')
 router.register(r'boards', BoardViewSet)
 router.register(r'list', ListAllViewSet, basename='list_all_board')
+router.register(r'comments', CreateCommentView, basename='create_up_del-comment')
 router.register(r'card', CardAllViewSet, basename='card_all_list')
 router.register(r'lists/(?P<category_id>\d+)', ListViewSet, basename='texnika')
 router.register(r'cards/(?P<category_id>\d+)', CardViewSet, basename='cardd')
@@ -62,7 +63,7 @@ urlpatterns = [
     path('notifications/', NotificationListView.as_view(), name='notification-list'),
     path('notifications/mark-read/', MarkNotificationAsReadView.as_view(), name='mark-notification-read'),
 
-    path('comments/create/', CreateCommentView.as_view(), name='create-comment'),
+    # path('comments/create/', CreateCommentView.as_view(), name='create-comment'),
 
 
 

@@ -59,7 +59,7 @@ class ListAllViewSet(viewsets.ModelViewSet):
 
 
 
-class CreateCommentView(generics.CreateAPIView):
+class CreateCommentView(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
     permission_classes = [permissions.IsAuthenticated]
