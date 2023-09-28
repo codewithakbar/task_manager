@@ -1,5 +1,7 @@
 from django.db import models
 
+from users.models import CustomUser
+
 
 class Board(models.Model):
     title = models.CharField(max_length=100)
@@ -51,3 +53,13 @@ class BoardMember(models.Model):
 
     def __str__(self):
         return f'{self.board} - {self.member}'
+
+
+class Comment(models.Model):
+    card = models.ForeignKey(Card, on_delete=models.CASCADE, related_name='comments')
+    text = models.TextField()
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.text

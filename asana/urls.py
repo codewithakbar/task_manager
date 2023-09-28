@@ -26,7 +26,7 @@ from rest_framework import routers
 from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
-from trello.views import BoardViewSet, CardViewSet, ListViewSet, ListAllViewSet, CardAllViewSet
+from trello.views import BoardViewSet, CardViewSet, CreateCommentView, ListViewSet, ListAllViewSet, CardAllViewSet
 
 from users.views import CustomUserDetailView, CustomUserListCreateView, MarkNotificationAsReadView, NotificationListView, RegisterView, LoginView, LogoutAPIView
 from rest_framework.authtoken.views import obtain_auth_token
@@ -61,6 +61,8 @@ urlpatterns = [
 
     path('notifications/', NotificationListView.as_view(), name='notification-list'),
     path('notifications/mark-read/', MarkNotificationAsReadView.as_view(), name='mark-notification-read'),
+
+    path('comments/create/', CreateCommentView.as_view(), name='create-comment'),
 
 
 

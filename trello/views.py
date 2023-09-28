@@ -1,7 +1,7 @@
 from rest_framework.response import Response
-from rest_framework import viewsets, permissions, status
-from .models import Board, List, Card
-from .serializers import BoardSerializer, ListSerializer, CardSerializer
+from rest_framework import viewsets, permissions, status, generics
+from .models import Board, Comment, List, Card
+from .serializers import BoardSerializer, CommentSerializer, ListSerializer, CardSerializer
 
 from rest_framework.authentication import SessionAuthentication
 
@@ -13,7 +13,7 @@ class BoardViewSet(viewsets.ModelViewSet):
     queryset = Board.objects.all()
     serializer_class = BoardSerializer
 
-    http_method_names = ['get', 'post', 'head', 'options', 'delete']
+    http_method_names = ['get', 'post', 'put', 'head', 'options', 'delete']
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -56,5 +56,12 @@ class ListAllViewSet(viewsets.ModelViewSet):
     serializer_class = ListSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = List.objects.all()
+
+
+
+class CreateCommentView(generics.CreateAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
