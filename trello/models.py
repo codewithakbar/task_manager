@@ -60,6 +60,7 @@ class Comment(models.Model):
     text = models.TextField()
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+    file = models.FileField(upload_to='comment_files/', blank=True, null=True)
 
     def __str__(self):
         return self.text
