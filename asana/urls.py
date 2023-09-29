@@ -55,7 +55,7 @@ urlpatterns = [
 
     # users
     path('register/',RegisterView.as_view(),name="register"),
-    path('login/', obtain_auth_token, name="login"),
+    path('login/', LoginView.as_view(), name="login"),
     path('logout/', LogoutAPIView.as_view(), name="logout"),
 
     path('users/', CustomUserListCreateView.as_view(), name='user-list'),

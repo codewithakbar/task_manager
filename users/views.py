@@ -5,6 +5,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from rest_framework.views import APIView
 from rest_framework.authtoken.serializers import AuthTokenSerializer
+from rest_framework.authtoken.views import ObtainAuthToken
+
 
 
 from .permissions import IsNotStaffUser
@@ -35,20 +37,17 @@ class RegisterView(generics.GenericAPIView):
 
 
 
-class LoginView(KnoxLoginView):
-    permission_classes = (permissions.AllowAny, )    
+class LoginView(ObtainAuthToken):
 
-    def post(self, request, format=None):
-        
-        serializer = AuthTokenSerializer(data=request.data)
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data, context={'request': request})
         serializer.is_valid(raise_exception=True)
-
         user = serializer.validated_data['user']
-        login(request, user)
+        token, created = Token.objects.get_or_create(user=user)
+        is_admin = user.is_staff
+        return Response({'token': token.key, 'is_admin': is_admin})
 
-        return super(LoginView, self).post(request, format=None)
-
-
+        
 
 @method_decorator(csrf_exempt, name='dispatch')
 class LogoutView(View):
