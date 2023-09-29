@@ -20,7 +20,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
 class CardSerializer(serializers.ModelSerializer):
 
-    comments = CommentSerializer(many=True)
+    # comments = CommentSerializer(many=True)
     
     class Meta:
         model = Card
