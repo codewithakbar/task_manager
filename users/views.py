@@ -45,7 +45,14 @@ class LoginView(ObtainAuthToken):
         user = serializer.validated_data['user']
         token, created = Token.objects.get_or_create(user=user)
         is_admin = user.is_staff
-        return Response({'token': token.key, 'is_admin': is_admin})
+        return Response(
+            {
+                'token': token.key, 
+                'is_admin': is_admin,
+                'user_id': user.id  
+            },
+
+            )
 
         
 
