@@ -11,12 +11,17 @@ class ListSerializer(serializers.ModelSerializer):
         model = List
         fields = '__all__'
 
-class CardSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Card
-        fields = '__all__'
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
+        fields = '__all__'
+
+
+class CardSerializer(serializers.ModelSerializer):
+
+    comments = CommentSerializer(many=True)
+    
+    class Meta:
+        model = Card
         fields = '__all__'
