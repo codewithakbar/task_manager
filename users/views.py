@@ -45,14 +45,22 @@ class LoginView(ObtainAuthToken):
         user = serializer.validated_data['user']
         token, created = Token.objects.get_or_create(user=user)
         is_admin = user.is_staff
+        
+        profile_image_url = user.profile_image.url if user.profile_image else None
+        if profile_image_url:
+            profile_image_url = request.build_absolute_uri(profile_image_url)
+
         return Response(
             {
                 'token': token.key, 
                 'is_admin': is_admin,
-                'user_id': user.id  
-            },
+                'user_id': user.id,
+                'email': user.email,
+                'full_name': user.full_name,
+                'photo': profile_image_url,  
+            }
+        )
 
-            )
 
         
 
