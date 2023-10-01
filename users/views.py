@@ -1,4 +1,4 @@
-from rest_framework import generics,status,views,permissions
+from rest_framework import generics,status,views,permissions, viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -23,6 +23,18 @@ from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_exempt
 
 from knox.views import LoginView as KnoxLoginView
+
+
+class UserProfileViewSet(viewsets.ModelViewSet):
+    serializer_class = CustomUserSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    # queryset = Card.objects.all()
+
+    def get_queryset(self):
+        category_id = self.kwargs['category_id']
+        queryset = CustomUser.objects.filter(id=category_id)
+        return queryset
+
 
 
 class RegisterView(generics.GenericAPIView):
@@ -122,3 +134,5 @@ class CustomUserDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         return CustomUser.objects.filter(is_staff=False)
+
+

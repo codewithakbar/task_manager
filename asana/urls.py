@@ -28,7 +28,7 @@ from rest_framework_simplejwt.views import (
 )
 from trello.views import BoardViewSet, CardViewSet, CommentViewSet, CreateCommentView, ListViewSet, ListAllViewSet, CardAllViewSet
 
-from users.views import CustomUserDetailView, CustomUserListCreateView, MarkNotificationAsReadView, NotificationListView, RegisterView, LoginView, LogoutAPIView
+from users.views import CustomUserDetailView, CustomUserListCreateView, MarkNotificationAsReadView, NotificationListView, RegisterView, LoginView, LogoutAPIView, UserProfileViewSet
 from rest_framework.authtoken.views import obtain_auth_token
 
 
@@ -43,6 +43,8 @@ router.register(r'comments/card/(?P<category_id>\d+)', CommentViewSet, basename=
 router.register(r'card', CardAllViewSet, basename='card_all_list')
 router.register(r'lists/(?P<category_id>\d+)', ListViewSet, basename='texnika')
 router.register(r'cards/(?P<category_id>\d+)', CardViewSet, basename='cardd')
+
+router.register(r'userprofile/(?P<category_id>\d+)', UserProfileViewSet, basename='userprofile')
 
 # router.register(r'cards', CardViewSet)
 
