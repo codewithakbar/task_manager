@@ -26,7 +26,7 @@ from rest_framework import routers
 from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
-from trello.views import BoardViewSet, CardViewSet, CommentViewSet, CreateCommentView, ListViewSet, ListAllViewSet, CardAllViewSet
+from trello.views import BoardSessionViewSet, BoardViewSet, CardViewSet, CommentViewSet, CreateCommentView, ListViewSet, ListAllViewSet, CardAllViewSet
 
 from users.views import CustomUserDetailView, CustomUserListCreateView, MarkNotificationAsReadView, NotificationListView, RegisterView, LoginView, LogoutAPIView, UserProfileViewSet
 from rest_framework.authtoken.views import obtain_auth_token
@@ -37,6 +37,9 @@ router = routers.DefaultRouter()
 # router.register(r'register', RegistrationAPIView, basename='register')
 # router.register(r'login', LoginAPIView, basename='login')
 router.register(r'boards', BoardViewSet)
+router.register(r'boards/s/(?P<user_id>\d+)', BoardSessionViewSet, basename='boardsseesiion')
+
+
 router.register(r'list', ListAllViewSet, basename='list_all_board')
 router.register(r'comment', CreateCommentView, basename='create_up_del-comment')
 router.register(r'comments/card/(?P<category_id>\d+)', CommentViewSet, basename='cardd_by_commnt')
