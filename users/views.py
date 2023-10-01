@@ -37,6 +37,7 @@ class UserProfileViewSet(viewsets.ModelViewSet):
 
 
 
+
 class RegisterView(generics.GenericAPIView):
     serializer_class = RegisterSerializer
     def post(self,request):

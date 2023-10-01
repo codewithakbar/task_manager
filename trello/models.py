@@ -5,7 +5,7 @@ from users.models import CustomUser
 
 class Board(models.Model):
     title = models.CharField(max_length=100)
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    user = models.ManyToManyField(CustomUser)
 
 
     def __str__(self):

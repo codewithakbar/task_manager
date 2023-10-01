@@ -18,7 +18,8 @@ class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(max_length=68, min_length=6, write_only=True)
     class Meta:
         model = CustomUser
-        fields = ['email', 'username', 'password', 'image']
+        fields = ['email', 'username', 'password', 'profile_image']
+        
     def validate(self, attrs):
         email = attrs.get('email', '')
         username = attrs.get('username', '')
