@@ -6,6 +6,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.views import APIView
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.generics import GenericAPIView, RetrieveModelMixin, UpdateModelMixin
 
 
 
@@ -30,12 +31,26 @@ class UserProfileViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     # queryset = Card.objects.all()
 
-    http_method_names = ['get', 'post', 'put', 'head', 'options', 'delete']
+    def get_queryset(self):
+        category_id = self.kwargs['category_id']
+        queryset = CustomUser.objects.filter(id=category_id)
+        return queryset
+
+
+class UserProfileDetailView(GenericAPIView, RetrieveModelMixin, UpdateModelMixin):
+    serializer_class = CustomUserSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
         category_id = self.kwargs['category_id']
         queryset = CustomUser.objects.filter(id=category_id)
         return queryset
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
 
 
 
