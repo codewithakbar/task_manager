@@ -65,7 +65,7 @@ urlpatterns = [
 
     path('users/', CustomUserListCreateView.as_view(), name='user-list'),
     path('users/<int:pk>/', CustomUserDetailView.as_view(), name='user-detail'),
-    path('userprofile/<int:category_id>/', UserProfileDetailView.as_view(), name='userprofile-detail'),
+    path('userprofiles/<int:category_id>/', UserProfileDetailView.as_view(), name='userprofile-detail'),
 
 
     path('notifications/', NotificationListView.as_view(), name='notification-list'),
