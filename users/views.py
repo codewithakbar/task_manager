@@ -44,8 +44,8 @@ class UserProfileDetailView(GenericAPIView, RetrieveModelMixin, UpdateModelMixin
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
-        category_id = self.kwargs['category_id']
-        queryset = CustomUser.objects.filter(id=category_id)
+        user_id = self.kwargs['pk']
+        queryset = CustomUser.objects.filter(id=user_id)
         return queryset
 
     def get(self, request, *args, **kwargs):
