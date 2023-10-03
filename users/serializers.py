@@ -39,7 +39,7 @@ class LoginSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CustomUser
-        fields = ['password','username']
+        fields = ['password','username', 'is_staff']
 
 
     def validate(self, attrs):
