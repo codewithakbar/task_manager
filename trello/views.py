@@ -3,6 +3,9 @@ from rest_framework import viewsets, permissions, status, generics
 from .models import Board, Comment, List, Card
 from .serializers import BoardSerializer, CommentSerializer, ListSerializer, CardSerializer
 
+
+
+from rest_framework.decorators import action
 from rest_framework.authentication import SessionAuthentication
 
 
@@ -19,6 +22,21 @@ class BoardViewSet(viewsets.ModelViewSet):
         instance = self.get_object()
         instance.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+    @action(detail=True, methods=['POST'])
+    def invite_user(self, request, pk=None):
+        board = self.get_object()
+        user_id = request.data.get('user_id')
+        
+        if user_id is not None:
+        
+            board.users.add(user_id)
+            board.save()
+            
+            return Response({"message": "User invited successfully!"}, status=status.HTTP_200_OK)
+        else:
+            return Response({"message": "User ID is missing in the request"}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class BoardSessionViewSet(viewsets.ModelViewSet):

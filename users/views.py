@@ -30,6 +30,8 @@ class UserProfileViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     # queryset = Card.objects.all()
 
+    http_method_names = ['get', 'post', 'put', 'head', 'options', 'delete']
+
     def get_queryset(self):
         category_id = self.kwargs['category_id']
         queryset = CustomUser.objects.filter(id=category_id)
