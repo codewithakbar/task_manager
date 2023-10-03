@@ -6,7 +6,9 @@ from rest_framework.authtoken.models import Token
 from rest_framework.views import APIView
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.authtoken.views import ObtainAuthToken
-from rest_framework.generics import GenericAPIView, RetrieveModelMixin, UpdateModelMixin
+from rest_framework.generics import GenericAPIView
+from rest_framework.mixins import RetrieveModelMixin, UpdateModelMixin
+
 
 
 
