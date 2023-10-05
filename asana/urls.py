@@ -26,7 +26,7 @@ from rest_framework import routers
 from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
-from trello.views import AllBardAdminViewSet, BoardSessionViewSet, BoardViewSet, CardViewSet, CommentViewSet, CreateCommentView, ListViewSet, ListAllViewSet, CardAllViewSet
+from trello.views import AllBardAdminViewSet, BoardSessionViewSet, BoardViewSet, CardViewSet, CommentViewSet, CreateCommentView, ListViewSet, ListAllViewSet, CardAllViewSet, UserBoardSessionViewSet
 
 from users.views import CustomUserDetailView, CustomUserListCreateView, MarkNotificationAsReadView, NotificationListView, RegisterView, LoginView, LogoutAPIView, UserProfileDetailView, UserProfileViewSet
 from rest_framework.authtoken.views import obtain_auth_token
@@ -37,7 +37,6 @@ router = routers.DefaultRouter()
 # router.register(r'register', RegistrationAPIView, basename='register')
 # router.register(r'login', LoginAPIView, basename='login')
 router.register(r'boards', BoardViewSet)
-router.register(r'boards/s/(?P<user_id>\d+)', BoardSessionViewSet, basename='boardsseesiion')
 
 router.register(r'all/boards', AllBardAdminViewSet, basename='admin_all_board')
 
@@ -50,6 +49,7 @@ router.register(r'lists/(?P<category_id>\d+)', ListViewSet, basename='texnika')
 router.register(r'cards/(?P<category_id>\d+)', CardViewSet, basename='cardd')
 
 router.register(r'userprofile/(?P<category_id>\d+)', UserProfileViewSet, basename='userprofile')
+router.register(r'user/boards/(?P<user_id>\d+)', UserBoardSessionViewSet, basename='boardsseesiion')
 
 # router.register(r'cards', CardViewSet)
 
@@ -78,6 +78,7 @@ urlpatterns = [
     path('create_board/boards/', AllBardAdminViewSet.as_view({'post': 'create'}), name='create_board'),
     path('update_board/<int:pk>/boards/', AllBardAdminViewSet.as_view({'put': 'update'}), name='update_board'),
     path('invite_user/<int:pk>/boards/', AllBardAdminViewSet.as_view({'post': 'invite_user'}), name='invite_user'),
+    path('remove_user/<int:pk>/boards/', AllBardAdminViewSet.as_view({'post': 'remove_user_in_board'}), name='remove_user'),
 
 
     path('routers/', include(router.urls)),
