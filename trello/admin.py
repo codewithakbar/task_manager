@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Board, Comment, List, Card
+from .models import Board, Comment, List, Card, Member, BoardMember, Comment
 
 
 
@@ -26,3 +26,21 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ('id', 'card', 'user', 'created_at',)
     list_filter = ('card', 'user',)
     search_fields = ('text', 'user__username',)
+
+
+
+@admin.register(Member)
+class MemberAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    list_filter = ('boards',)
+    search_fields = ('name',)
+
+
+
+@admin.register(BoardMember)
+class BoardMemberAdmin(admin.ModelAdmin):
+    list_display = ('board', 'member',)
+    list_filter = ('board', 'member',)
+    search_fields = ('board__name', 'member__name',)
+
+

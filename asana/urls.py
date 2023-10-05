@@ -26,7 +26,7 @@ from rest_framework import routers
 from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
-from trello.views import BoardSessionViewSet, BoardViewSet, CardViewSet, CommentViewSet, CreateCommentView, ListViewSet, ListAllViewSet, CardAllViewSet
+from trello.views import AllBardAdminViewSet, BoardSessionViewSet, BoardViewSet, CardViewSet, CommentViewSet, CreateCommentView, ListViewSet, ListAllViewSet, CardAllViewSet
 
 from users.views import CustomUserDetailView, CustomUserListCreateView, MarkNotificationAsReadView, NotificationListView, RegisterView, LoginView, LogoutAPIView, UserProfileDetailView, UserProfileViewSet
 from rest_framework.authtoken.views import obtain_auth_token
@@ -38,6 +38,8 @@ router = routers.DefaultRouter()
 # router.register(r'login', LoginAPIView, basename='login')
 router.register(r'boards', BoardViewSet)
 router.register(r'boards/s/(?P<user_id>\d+)', BoardSessionViewSet, basename='boardsseesiion')
+
+router.register(r'all/boards', AllBardAdminViewSet, basename='admin_all_board')
 
 
 router.register(r'list', ListAllViewSet, basename='list_all_board')
@@ -73,6 +75,9 @@ urlpatterns = [
 
     # path('comments/create/', CreateCommentView.as_view(), name='create-comment'),
 
+    path('create_board/boards/', AllBardAdminViewSet.as_view({'post': 'create'}), name='create_board'),
+    path('update_board/<int:pk>/boards/', AllBardAdminViewSet.as_view({'put': 'update'}), name='update_board'),
+    path('invite_user/<int:pk>/boards/', AllBardAdminViewSet.as_view({'post': 'invite_user'}), name='invite_user'),
 
 
     path('routers/', include(router.urls)),

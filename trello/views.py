@@ -1,5 +1,7 @@
 from rest_framework.response import Response
 from rest_framework import viewsets, permissions, status, generics
+
+from users.models import CustomUser
 from .models import Board, Comment, List, Card
 from .serializers import BoardSerializer, CommentSerializer, ListSerializer, CardSerializer
 
@@ -7,6 +9,59 @@ from .serializers import BoardSerializer, CommentSerializer, ListSerializer, Car
 
 from rest_framework.decorators import action
 from rest_framework.authentication import SessionAuthentication
+
+
+
+
+
+# Admin metodi
+
+
+class AllBardAdminViewSet(viewsets.ModelViewSet):
+    """Boardagi hamma objectni oladi"""
+    permission_classes = (permissions.IsAdminUser, )
+    queryset = Board.objects.all()
+    serializer_class = BoardSerializer
+
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+    @action(detail=True, methods=['POST'])
+    def invite_user(self, request, pk=None):
+        board = self.get_object()
+        user_id = request.data.get('user_id')
+        
+        if user_id is not None:
+        
+            board.user.add(user_id)
+            board.save()
+            
+            return Response({"message": "User invited successfully!"}, status=status.HTTP_200_OK)
+        else:
+            return Response({"message": "User ID is missing in the request"}, status=status.HTTP_400_BAD_REQUEST)
+
+
+    @action(detail=True, methods=['POST'])
+    def remove_user_in_board(self, request, pk=None):
+        board = self.get_object()
+        user_id = request.data.get('user_id')
+
+        if user_id is not None:
+            try:
+                user_to_remove = CustomUser.objects.get(id=user_id)
+                board.user.remove(user_to_remove)
+                board.save()
+                return Response({"message": "User removed from the board successfully!"}, status=status.HTTP_200_OK)
+
+            except CustomUser.DoesNotExist:
+                return Response({"message": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+        else:
+            return Response({"message": "User ID is missing in the request"}, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 class BoardViewSet(viewsets.ModelViewSet):
