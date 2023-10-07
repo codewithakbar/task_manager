@@ -60,7 +60,7 @@ class BoardMember(models.Model):
 class Comment(models.Model):
     card = models.ForeignKey(Card, on_delete=models.CASCADE, related_name='comments')
     text = models.TextField()
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    user = models.ManyToManyField(CustomUser)
     created_at = models.DateTimeField(auto_now_add=True)
     file = models.FileField(upload_to='comment_files/', blank=True, null=True)
 

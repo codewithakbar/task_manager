@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from .models import Board, Comment, List, Card
 
+from users.serializers import CustomUserSerializer
+
 class BoardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Board
@@ -13,6 +15,9 @@ class ListSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
+
+    user = CustomUserSerializer(many=True)
+
     class Meta:
         model = Comment
         fields = '__all__'
