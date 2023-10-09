@@ -143,12 +143,12 @@ class MarkNotificationAsReadView(generics.UpdateAPIView):
 
 class CustomUserListCreateView(generics.ListAPIView):
     serializer_class = CustomUserSerializer
-    permission_classes = [permissions.IsAdminUser]
+    permission_classes = (permissions.IsAdminUser,)
 
     def get_queryset(self):
         return CustomUser.objects.filter(is_staff=False)
 
-
+    
 
 class CustomUserDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CustomUserSerializer
