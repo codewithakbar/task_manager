@@ -104,7 +104,7 @@ class UserBoardSessionViewSet(viewsets.ModelViewSet):
 
 # lishniy
 class BoardViewSet(viewsets.ModelViewSet):
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAdminUser,)
     # permission_classes = (permissions.IsAuthenticated,)
     # authentication_classes = (SessionAuthentication,)
     queryset = Board.objects.all()
