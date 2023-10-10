@@ -49,10 +49,10 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     "knox",
     'ckeditor',
+    'mptt',
 
     'users',
     'trello',
-    'mptt',
 
 
 
@@ -251,3 +251,7 @@ CKEDITOR_CONFIGS = {
 
 
 AUTH_USER_MODEL = 'users.CustomUser'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]

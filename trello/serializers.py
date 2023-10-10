@@ -16,7 +16,6 @@ class ListSerializer(serializers.ModelSerializer):
 
 class CommentSerializer(serializers.ModelSerializer):
 
-    user = CustomUserSerializer(many=True)
 
     class Meta:
         model = Comment
