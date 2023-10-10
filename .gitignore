@@ -166,3 +166,8 @@ media/comment_files/5445887_Proxy_Moment.jpg
 media/profile/2023/09/30/AkbarAli_abu_ali_ibn_sina_978010c3-a760-4143-8b67-4a4bafb145b8.png
 trello/migrations/0004_board_user.py
 trello/migrations/0006_remove_comment_user_comment_user.py
+media/profile/2023/10/06/Снимок.PNG
+trello/migrations/0003_board_user_comment_file.py
+trello/migrations/0005_remove_board_user_board_user.py
+trello/migrations/0004_remove_comment_user_comment_user.py
+trello/migrations/0005_remove_board_user_board_user.py
