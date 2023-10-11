@@ -45,6 +45,8 @@ router.register(r'list', ListAllViewSet, basename='list_all_board')
 router.register(r'comment', CreateCommentView, basename='create_up_del-comment')
 router.register(r'comments/card/(?P<category_id>\d+)', CommentViewSet, basename='cardd_by_commnt')
 router.register(r'comments/card/post/(?P<category_id>\d+)', CommentViewSetPOST, basename='card_post__dby_commnt')
+router.register(r'comment/post/', CommentViewSetPOST, basename='card_post__dby_commnt')
+
 router.register(r'card', CardAllViewSet, basename='card_all_list')
 router.register(r'lists/(?P<category_id>\d+)', ListViewSet, basename='texnika')
 router.register(r'cards/(?P<category_id>\d+)', CardViewSet, basename='cardd')

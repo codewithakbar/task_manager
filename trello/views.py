@@ -191,8 +191,8 @@ class ListAllViewSet(viewsets.ModelViewSet):
 
 
 class CreateCommentView(viewsets.ModelViewSet):
-    queryset = Comment.objects.all()
     serializer_class = CommentSerializer
+    queryset = Comment.objects.all()
     permission_classes = [permissions.IsAuthenticated]
 
 
@@ -210,12 +210,5 @@ class CommentViewSet(viewsets.ModelViewSet):
 
 class CommentViewSetPOST(viewsets.ModelViewSet):
     serializer_class = CommentSerializerPOST
+    queryset = Comment.objects.all()
     permission_classes = [permissions.IsAuthenticated]
-    # queryset = Card.objects.all()
-
-    def get_queryset(self):
-        category_id = self.kwargs['category_id']
-        queryset = Comment.objects.filter(card__id=category_id).order_by("-id")
-        return queryset
-
-
