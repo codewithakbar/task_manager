@@ -3,7 +3,7 @@ from rest_framework import viewsets, permissions, status, generics
 
 from users.models import CustomUser
 from .models import Board, Comment, List, Card
-from .serializers import BoardSerializer, CommentSerializer, ListSerializer, CardSerializer
+from .serializers import BoardSerializer, CommentSerializer, CommentSerializerPOST, ListSerializer, CardSerializer
 
 
 
@@ -206,3 +206,16 @@ class CommentViewSet(viewsets.ModelViewSet):
         category_id = self.kwargs['category_id']
         queryset = Comment.objects.filter(card__id=category_id).order_by("-id")
         return queryset
+
+
+class CommentViewSetPOST(viewsets.ModelViewSet):
+    serializer_class = CommentSerializerPOST
+    permission_classes = [permissions.IsAuthenticated]
+    # queryset = Card.objects.all()
+
+    def get_queryset(self):
+        category_id = self.kwargs['category_id']
+        queryset = Comment.objects.filter(card__id=category_id).order_by("-id")
+        return queryset
+
+

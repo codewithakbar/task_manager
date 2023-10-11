@@ -16,12 +16,18 @@ class ListSerializer(serializers.ModelSerializer):
 
 class CommentSerializer(serializers.ModelSerializer):
 
-    # user = CustomUserSerializer(many=True)
+    user = CustomUserSerializer()
 
     class Meta:
         model = Comment
         fields = '__all__'
-        depth = 1
+
+
+class CommentSerializerPOST(serializers.ModelSerializer):
+
+    class Meta:
+        model = Comment
+        fields = '__all__'
 
 
 

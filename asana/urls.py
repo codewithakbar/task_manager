@@ -26,7 +26,7 @@ from rest_framework import routers
 from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
-from trello.views import AllBardAdminViewSet, BoardSessionViewSet, BoardViewSet, CardViewSet, CommentViewSet, CreateCommentView, ListViewSet, ListAllViewSet, CardAllViewSet, UserBoardSessionViewSet
+from trello.views import AllBardAdminViewSet, BoardSessionViewSet, BoardViewSet, CardViewSet, CommentViewSet, CommentViewSetPOST, CreateCommentView, ListViewSet, ListAllViewSet, CardAllViewSet, UserBoardSessionViewSet
 
 from users.views import CustomUserDetailView, CustomUserListCreateView, MarkNotificationAsReadView, NotificationListView, RegisterView, LoginView, LogoutAPIView, UserProfileDetailView, UserProfileViewSet
 from rest_framework.authtoken.views import obtain_auth_token
@@ -44,6 +44,7 @@ router.register(r'all/boards', AllBardAdminViewSet, basename='admin_all_board')
 router.register(r'list', ListAllViewSet, basename='list_all_board')
 router.register(r'comment', CreateCommentView, basename='create_up_del-comment')
 router.register(r'comments/card/(?P<category_id>\d+)', CommentViewSet, basename='cardd_by_commnt')
+router.register(r'comments/card/post/(?P<category_id>\d+)', CommentViewSetPOST, basename='card_post__dby_commnt')
 router.register(r'card', CardAllViewSet, basename='card_all_list')
 router.register(r'lists/(?P<category_id>\d+)', ListViewSet, basename='texnika')
 router.register(r'cards/(?P<category_id>\d+)', CardViewSet, basename='cardd')
