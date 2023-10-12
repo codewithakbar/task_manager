@@ -7,6 +7,7 @@ class BoardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Board
         fields = '__all__'
+        depth = 1
 
 class ListSerializer(serializers.ModelSerializer):
     class Meta:
