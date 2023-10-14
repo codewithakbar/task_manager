@@ -148,7 +148,7 @@ class CustomUserListCreateView(generics.ListAPIView):
     def get_queryset(self):
         return CustomUser.objects.filter(is_staff=False)
 
-    
+
 
 class CustomUserDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CustomUserSerializer
@@ -156,5 +156,4 @@ class CustomUserDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         return CustomUser.objects.filter(is_staff=False)
-
 

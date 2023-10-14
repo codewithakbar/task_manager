@@ -1,5 +1,6 @@
 from rest_framework.response import Response
 from rest_framework import viewsets, permissions, status, generics
+from trello.permissions import IsAdminUserOrReadOnly
 
 from users.models import CustomUser
 from .models import Board, Comment, List, Card
@@ -16,6 +17,13 @@ from rest_framework.authentication import SessionAuthentication
 
 # Admin metodi
 
+class UserBoardUsers(viewsets.ModelViewSet):
+
+    permission_classes = (IsAdminUserOrReadOnly,)
+    queryset = Board.objects.all()
+    serializer_class = BoardSerializer
+
+    
 
 class AllBardAdminViewSet(viewsets.ModelViewSet):
     """Boardagi hamma objectni oladi"""

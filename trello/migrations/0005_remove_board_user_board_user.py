@@ -8,7 +8,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ("trello", "0004_board_user"),
+        ("trello", "0004_remove_comment_user_comment_user"),
     ]
 
     operations = [
