@@ -212,7 +212,7 @@ class CommentViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         category_id = self.kwargs['category_id']
-        queryset = Comment.objects.filter(card__id=category_id)
+        queryset = Comment.objects.filter(card__id=category_id).order_by('-id')
         return queryset
 
 
