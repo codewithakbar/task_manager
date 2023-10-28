@@ -1,13 +1,32 @@
 from rest_framework import serializers
-from .models import Board, Comment, List, Card
+from .models import Board, TugatilganBoard, BajarilmaganBoard, Comment, List, Card
 
 from users.serializers import CustomUserSerializer
+
 
 class BoardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Board
         fields = '__all__'
         depth = 1
+
+
+
+class TugatilganBoardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TugatilganBoard
+        fields = '__all__'
+        depth = 1
+
+
+
+class BajarilmaganBoardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BajarilmaganBoard
+        fields = '__all__'
+        depth = 1
+
+
 
 class ListSerializer(serializers.ModelSerializer):
     class Meta:

@@ -3,13 +3,19 @@ from rest_framework import viewsets, permissions, status, generics
 from trello.permissions import IsAdminUserOrReadOnly
 
 from users.models import CustomUser
-from .models import Board, Comment, List, Card
-from .serializers import BoardSerializer, CommentSerializer, CommentSerializerPOST, ListSerializer, CardSerializer
+from .models import Board, TugatilganBoard, BajarilmaganBoard, Comment, List, Card
+from .serializers import (
+    BoardSerializer, TugatilganBoardSerializer, BajarilmaganBoardSerializer, CommentSerializer, 
+    CommentSerializerPOST, ListSerializer, CardSerializer
+)
 
 
 
 from rest_framework.decorators import action
 from rest_framework.authentication import SessionAuthentication
+
+
+
 
 
 
@@ -30,6 +36,29 @@ class AllBardAdminViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAdminUser,)
     queryset = Board.objects.all()
     serializer_class = BoardSerializer
+
+
+    def boar_to_tugatilgan(self, request, pk):
+        try:
+            source_instance = Board.objects.get(pk=pk)
+
+            # Create a new TugatilganBoard instance
+            target_instance = TugatilganBoard(title=source_instance.title)
+            target_instance.save()
+
+            # Add the users associated with the source_instance to the target_instance
+            target_instance.user.set(source_instance.user.all())
+
+            # Delete the source_instance
+            source_instance.delete()
+
+            return Response({"message": "Data moved successfully"})
+        except Board.DoesNotExist:
+            return Response(
+                {"error": "SourceModel with the specified ID does not exist"},
+                status=status.HTTP_404_NOT_FOUND
+            )
+
 
 
     def destroy(self, request, *args, **kwargs):
@@ -220,3 +249,5 @@ class CommentViewSetPOST(viewsets.ModelViewSet):
     serializer_class = CommentSerializerPOST
     queryset = Comment.objects.all()
     permission_classes = [permissions.IsAuthenticated]
+
+    
