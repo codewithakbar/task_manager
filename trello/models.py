@@ -12,7 +12,7 @@ class Board(models.Model):
         return self.title
     
 
-class TugatilganBoard(models.Model):
+class TugatilmaganBoard(models.Model):
     title = models.CharField(max_length=100)
     user = models.ManyToManyField(CustomUser)
 
@@ -22,6 +22,16 @@ class TugatilganBoard(models.Model):
 
 
 class BajarilmaganBoard(models.Model):
+    title = models.CharField(max_length=100)
+    user = models.ManyToManyField(CustomUser)
+
+
+    def __str__(self):
+        return self.title
+    
+
+
+class BajarilganBoard(models.Model):
     title = models.CharField(max_length=100)
     user = models.ManyToManyField(CustomUser)
 

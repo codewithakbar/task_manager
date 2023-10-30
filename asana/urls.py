@@ -86,7 +86,8 @@ urlpatterns = [
     path('update_board/<int:pk>/boards/', AllBardAdminViewSet.as_view({'put': 'update'}), name='update_board'),
     path('invite_user/<int:pk>/boards/', AllBardAdminViewSet.as_view({'post': 'invite_user'}), name='invite_user'),
     path('remove_user/<int:pk>/boards/', AllBardAdminViewSet.as_view({'post': 'remove_user_in_board'}), name='remove_user'),
-    path('to/<int:pk>/tugatilgan/', AllBardAdminViewSet.as_view({'post': 'boar_to_tugatilgan'}), name='boar_to_tugatilgan'),
+    path('to/<int:pk>/tugatilmagan/', AllBardAdminViewSet.as_view({'post': 'boar_to_tugatilmagan'}), name='boar_to_tugatilgan'),
+    path('to/<int:pk>/bajarilganga/', AllBardAdminViewSet.as_view({'post': 'board_to_bajarilgan'}), name='board_to_bajarilgan'),
 
 
     path('routers/', include(router.urls)),

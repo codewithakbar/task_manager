@@ -3,9 +3,9 @@ from rest_framework import viewsets, permissions, status, generics
 from trello.permissions import IsAdminUserOrReadOnly
 
 from users.models import CustomUser
-from .models import Board, TugatilganBoard, BajarilmaganBoard, Comment, List, Card
+from .models import BajarilganBoard, Board, TugatilmaganBoard, BajarilmaganBoard, Comment, List, Card
 from .serializers import (
-    BoardSerializer, TugatilganBoardSerializer, BajarilmaganBoardSerializer, CommentSerializer, 
+    BoardSerializer, TugatilmaganBoardSerializer, BajarilmaganBoardSerializer, CommentSerializer, 
     CommentSerializerPOST, ListSerializer, CardSerializer
 )
 
@@ -38,21 +38,39 @@ class AllBardAdminViewSet(viewsets.ModelViewSet):
     serializer_class = BoardSerializer
 
 
-    def boar_to_tugatilgan(self, request, pk):
+    def boar_to_tugatilmagan(self, request, pk):
         try:
             source_instance = Board.objects.get(pk=pk)
 
-            # Create a new TugatilganBoard instance
-            target_instance = TugatilganBoard(title=source_instance.title)
+            target_instance = TugatilmaganBoard(title=source_instance.title)
             target_instance.save()
 
-            # Add the users associated with the source_instance to the target_instance
             target_instance.user.set(source_instance.user.all())
 
-            # Delete the source_instance
             source_instance.delete()
 
             return Response({"message": "Data moved successfully"})
+        except Board.DoesNotExist:
+            return Response(
+                {"error": "SourceModel with the specified ID does not exist"},
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+
+    def board_to_bajarilgan(sekf, request, pk):
+        try:
+            source_inctance = Board.objects.get(pk=pk)
+
+            target_instance = BajarilganBoard(title=source_inctance.title)
+            target_instance.save()
+
+
+            target_instance.user.set(source_inctance.user.all())
+
+            source_inctance.delete()
+
+            return Response({"message": "Data moved successfully"})
+
         except Board.DoesNotExist:
             return Response(
                 {"error": "SourceModel with the specified ID does not exist"},
