@@ -17,6 +17,12 @@ from rest_framework.authentication import SessionAuthentication
 
 
 
+class TugatilmaganViewSet(viewsets.ModelViewSet):
+    
+    permission_classes = [permissions.IsAdminUser]
+    queryset = TugatilmaganBoard.objects.all()
+    serializer_class = TugatilmaganBoardSerializer
+
 
 
 
