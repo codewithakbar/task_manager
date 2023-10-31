@@ -56,7 +56,7 @@ class AllBardAdminViewSet(viewsets.ModelViewSet):
         try:
             source_instance = Board.objects.get(pk=pk)
 
-            target_instance = TugatilmaganBoard(title=source_instance.title)
+            target_instance = TugatilmaganBoard(id=source_instance.id, title=source_instance.title)
             target_instance.save()
 
             target_instance.user.set(source_instance.user.all())
