@@ -61,7 +61,8 @@ class AllBardAdminViewSet(viewsets.ModelViewSet):
 
             target_instance.user.set(source_instance.user.all())
 
-            # source_instance.delete()
+            source_instance = Board.objects.filter(status_active=False)
+            source_instance.save()
 
             return Response({"message": "Data moved successfully"})
         except Board.DoesNotExist:
