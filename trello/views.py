@@ -48,7 +48,7 @@ class UserBoardUsers(viewsets.ModelViewSet):
 class AllBardAdminViewSet(viewsets.ModelViewSet):
     """Boardagi hamma objectni oladi"""
     permission_classes = (permissions.IsAdminUser,)
-    queryset = Board.objects.all()
+    queryset = Board.objects.filter(status_active=None)
     serializer_class = BoardSerializer
 
 
