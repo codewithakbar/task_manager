@@ -9,7 +9,7 @@ from users.models import CustomUser
 class Board(models.Model):
     title = models.CharField(max_length=100)
     user = models.ManyToManyField(CustomUser)
-    status_activew = models.BooleanField(default=True, blank=True, null=True)
+    status_active = models.BooleanField(default=True, blank=True, null=True)
 
 
     def __str__(self):
