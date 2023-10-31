@@ -25,6 +25,14 @@ class TugatilmaganViewSet(viewsets.ModelViewSet):
 
 
 
+class BajarilganBoardViewSet(viewsets.ModelViewSet):
+    
+    permission_classes = [permissions.IsAdminUser]
+    queryset = BajarilganBoard.objects.all()
+    serializer_class = TugatilmaganBoardSerializer
+
+
+
 
 
 # Admin metodi
@@ -82,6 +90,9 @@ class AllBardAdminViewSet(viewsets.ModelViewSet):
                 {"error": "SourceModel with the specified ID does not exist"},
                 status=status.HTTP_404_NOT_FOUND
             )
+
+
+
 
 
 

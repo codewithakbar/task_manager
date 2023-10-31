@@ -3,6 +3,9 @@ from django.db import models
 from users.models import CustomUser
 
 
+
+""" ################################   Boardlar   #################################### """
+
 class Board(models.Model):
     title = models.CharField(max_length=100)
     user = models.ManyToManyField(CustomUser)
@@ -41,12 +44,24 @@ class BajarilganBoard(models.Model):
 
 
 
+#########################################################################################
+
+
+
+
 class List(models.Model):
     title = models.CharField(max_length=100)
     board = models.ForeignKey(Board, on_delete=models.CASCADE, related_name='lists')
 
     def __str__(self):
         return self.title
+    
+
+
+
+
+
+################################################################################################
 
 
 
@@ -59,6 +74,11 @@ class Card(models.Model):
 
     def __str__(self):
         return self.title
+
+
+
+
+####################################################################################################
 
 
 class Label(models.Model):
