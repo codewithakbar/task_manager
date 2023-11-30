@@ -173,7 +173,35 @@ class UserBoardSessionViewSet(viewsets.ModelViewSet):
 
 
 
+class AllBardUserViewSet(viewsets.ModelViewSet):
+    """Boardagi hamma objectni oladi"""
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
+    queryset = Board.objects.filter(status_active=True)
+    serializer_class = BoardSerializer
 
+
+    def user_to_check_board(self, request, pk):
+        try:
+            source_instance = Board.objects.get(pk=pk)
+
+            target_instance = BajarilganBoard(id=source_instance.id, title=source_instance.title)
+            target_instance.save()
+
+            target_instance.user.set(source_instance.user.all())
+
+            # source_instance2 = Board(id=source_instance.id, status_active=False)
+            # source_instance2.save()
+
+            source_instance.delete()
+            
+            
+
+            return Response({"message": "Data moved successfully"})
+        except Board.DoesNotExist:
+            return Response(
+                {"error": "SourceModel with the specified ID does not exist"},
+                status=status.HTTP_404_NOT_FOUND
+            )
 
 
 

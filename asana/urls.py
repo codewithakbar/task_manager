@@ -26,7 +26,7 @@ from rest_framework import routers
 from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
-from trello.views import AllBardAdminViewSet, BajarilganBoardViewSet, BoardSessionViewSet, BoardViewSet, CardViewSet, CommentViewSet, CommentViewSetPOST, CreateCommentView, ListViewSet, ListAllViewSet, CardAllViewSet, TugatilmaganViewSet, UserBoardSessionViewSet, UserBoardUsers
+from trello.views import AllBardAdminViewSet, AllBardUserViewSet, BajarilganBoardViewSet, BoardSessionViewSet, BoardViewSet, CardViewSet, CommentViewSet, CommentViewSetPOST, CreateCommentView, ListViewSet, ListAllViewSet, CardAllViewSet, TugatilmaganViewSet, UserBoardSessionViewSet, UserBoardUsers
 
 from users.views import CustomUserDetailView, CustomUserListCreateView, MarkNotificationAsReadView, NotificationListView, RegisterView, LoginView, LogoutAPIView, UserProfileDetailView, UserProfileViewSet
 from rest_framework.authtoken.views import obtain_auth_token
@@ -90,6 +90,13 @@ urlpatterns = [
     path('remove_user/<int:pk>/boards/', AllBardAdminViewSet.as_view({'post': 'remove_user_in_board'}), name='remove_user'),
     path('to/<int:pk>/tugatilmagan/', AllBardAdminViewSet.as_view({'post': 'boar_to_tugatilmagan'}), name='boar_to_tugatilgan'),
     path('to/<int:pk>/bajarilganga/', AllBardAdminViewSet.as_view({'post': 'board_to_bajarilgan'}), name='board_to_bajarilgan'),
+
+
+    # user
+
+    path('to/<int:pk>/chek/', AllBardUserViewSet.as_view({'post': 'user_to_check_board'}), name='user_to_check_board'),
+
+
 
 
     path('routers/', include(router.urls)),
