@@ -3,9 +3,9 @@ from rest_framework import viewsets, permissions, status, generics
 from trello.permissions import IsAdminUserOrReadOnly
 
 from users.models import CustomUser
-from .models import BajarilganBoard, Board, TugatilmaganBoard, BajarilmaganBoard, Comment, List, Card
+from .models import BajarilganBoard, Board, ChekBoard, TugatilmaganBoard, BajarilmaganBoard, Comment, List, Card
 from .serializers import (
-    BoardSerializer, TugatilmaganBoardSerializer, BajarilmaganBoardSerializer, CommentSerializer, 
+    BoardSerializer, ChekBoardSerializer, TugatilmaganBoardSerializer, BajarilmaganBoardSerializer, CommentSerializer, 
     CommentSerializerPOST, ListSerializer, CardSerializer
 )
 
@@ -30,6 +30,13 @@ class BajarilganBoardViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAdminUser]
     queryset = BajarilganBoard.objects.all()
     serializer_class = TugatilmaganBoardSerializer
+
+
+class ChekBoardViewSet(viewsets.ModelViewSet):
+    
+    permission_classes = [permissions.IsAdminUser]
+    queryset = ChekBoard.objects.all()
+    serializer_class = ChekBoardSerializer
 
 
 
@@ -184,7 +191,7 @@ class AllBardUserViewSet(viewsets.ModelViewSet):
         try:
             source_instance = Board.objects.get(pk=pk)
 
-            target_instance = BajarilganBoard(id=source_instance.id, title=source_instance.title)
+            target_instance = ChekBoard(id=source_instance.id, title=source_instance.title)
             target_instance.save()
 
             target_instance.user.set(source_instance.user.all())

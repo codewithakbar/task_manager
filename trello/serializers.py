@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import BajarilganBoard, Board, TugatilmaganBoard, BajarilmaganBoard, Comment, List, Card
+from .models import BajarilganBoard, Board, ChekBoard, TugatilmaganBoard, BajarilmaganBoard, Comment, List, Card
 
 from users.serializers import CustomUserSerializer
 
@@ -15,6 +15,13 @@ class BoardSerializer(serializers.ModelSerializer):
 class TugatilmaganBoardSerializer(serializers.ModelSerializer):
     class Meta:
         model = TugatilmaganBoard
+        fields = '__all__'
+        depth = 1
+
+
+class ChekBoardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ChekBoard
         fields = '__all__'
         depth = 1
 

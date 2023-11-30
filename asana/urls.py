@@ -26,7 +26,7 @@ from rest_framework import routers
 from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
-from trello.views import AllBardAdminViewSet, AllBardUserViewSet, BajarilganBoardViewSet, BoardSessionViewSet, BoardViewSet, CardViewSet, CommentViewSet, CommentViewSetPOST, CreateCommentView, ListViewSet, ListAllViewSet, CardAllViewSet, TugatilmaganViewSet, UserBoardSessionViewSet, UserBoardUsers
+from trello.views import AllBardAdminViewSet, AllBardUserViewSet, BajarilganBoardViewSet, BoardSessionViewSet, BoardViewSet, CardViewSet, ChekBoardViewSet, CommentViewSet, CommentViewSetPOST, CreateCommentView, ListViewSet, ListAllViewSet, CardAllViewSet, TugatilmaganViewSet, UserBoardSessionViewSet, UserBoardUsers
 
 from users.views import CustomUserDetailView, CustomUserListCreateView, MarkNotificationAsReadView, NotificationListView, RegisterView, LoginView, LogoutAPIView, UserProfileDetailView, UserProfileViewSet
 from rest_framework.authtoken.views import obtain_auth_token
@@ -45,6 +45,7 @@ router.register(r'boards', UserBoardUsers)
 router.register(r'all/boards', AllBardAdminViewSet, basename='admin_all_board')
 router.register(r'all/tugatilmagan', TugatilmaganViewSet, basename='admin_all_tugatilmagan_board')
 router.register(r'all/bajarilgan', BajarilganBoardViewSet, basename='admin_all_bajarilgan_board')
+router.register(r'all/chek', ChekBoardViewSet, basename='chek')
 
 
 router.register(r'list', ListAllViewSet, basename='list_all_board')
