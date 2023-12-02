@@ -1,6 +1,9 @@
 from rest_framework.response import Response
 from rest_framework import viewsets, permissions, status, generics
-from trello.permissions import IsAdminUserOrReadOnly
+from rest_framework.decorators import action
+from rest_framework.authentication import SessionAuthentication
+
+from trello.permissions import IsAdminUserOrReadOnly, IsOddiyAdminUser
 
 from users.models import CustomUser
 from .models import BajarilganBoard, Board, ChekBoard, TugatilmaganBoard, BajarilmaganBoard, Comment, List, Card
@@ -11,8 +14,6 @@ from .serializers import (
 
 
 
-from rest_framework.decorators import action
-from rest_framework.authentication import SessionAuthentication
 
 
 
@@ -104,10 +105,6 @@ class AllBardAdminViewSet(viewsets.ModelViewSet):
             )
 
 
-
-
-
-
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
         instance.delete()
@@ -181,7 +178,7 @@ class UserBoardSessionViewSet(viewsets.ModelViewSet):
 
 
 class AllBardUserViewSet(viewsets.ModelViewSet):
-    """Boardagi hamma objectni oladi"""
+    """ Foydalanuvchi boardni bajarishga yuvaradi """
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
     queryset = Board.objects.filter(status_active=True)
     serializer_class = BoardSerializer
@@ -216,7 +213,7 @@ class AllBardUserViewSet(viewsets.ModelViewSet):
 
 # lishniy
 class BoardViewSet(viewsets.ModelViewSet):
-    permission_classes = (permissions.IsAdminUser,)
+    permission_classes = (permissions.IsAdminUser, IsOddiyAdminUser)
     # permission_classes = (permissions.IsAuthenticated,)
     # authentication_classes = (SessionAuthentication,)
     queryset = Board.objects.all()

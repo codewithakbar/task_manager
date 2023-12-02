@@ -171,3 +171,4 @@ trello/migrations/0005_remove_board_user_board_user.py
 trello/migrations/0002_comment.py
 trello/migrations/0002_tugatilganboard_bajarilmaganboard.py
 trello/migrations/0003_rename_tugatilganboard_bajarilganboard_and_more.py
+users/migrations/0002_customuser_oddiy_admin.py
