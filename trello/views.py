@@ -213,7 +213,7 @@ class AllBardUserViewSet(viewsets.ModelViewSet):
 
 # lishniy
 class BoardViewSet(viewsets.ModelViewSet):
-    permission_classes = (IsAdminUser, )
+    permission_classes = (IsAdminUser,)
     # permission_classes = (permissions.IsAuthenticated,)
     # authentication_classes = (SessionAuthentication,)
     queryset = Board.objects.all()
