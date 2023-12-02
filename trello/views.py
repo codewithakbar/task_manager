@@ -3,7 +3,7 @@ from rest_framework import viewsets, permissions, status, generics
 from rest_framework.decorators import action
 from rest_framework.authentication import SessionAuthentication
 
-from trello.permissions import IsAdminUserOrReadOnly, IsOddiyAdminUser
+from trello.permissions import IsAdminUser, IsAdminUserOrReadOnly, IsOddiyAdminUser
 
 from users.models import CustomUser
 from .models import BajarilganBoard, Board, ChekBoard, TugatilmaganBoard, BajarilmaganBoard, Comment, List, Card
@@ -213,7 +213,7 @@ class AllBardUserViewSet(viewsets.ModelViewSet):
 
 # lishniy
 class BoardViewSet(viewsets.ModelViewSet):
-    permission_classes = (IsOddiyAdminUser,)
+    permission_classes = (IsOddiyAdminUser, IsAdminUser)
     # permission_classes = (permissions.IsAuthenticated,)
     # authentication_classes = (SessionAuthentication,)
     queryset = Board.objects.all()
