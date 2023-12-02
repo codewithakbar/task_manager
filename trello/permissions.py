@@ -12,8 +12,6 @@ class IsAdminUserOrReadOnly(permissions.BasePermission):
 class IsOddiyAdminUser(permissions.BasePermission):
 
     def has_permission(self, request, view):
-        if request.user.is_staff:
-            return bool(request.user and request.user.is_staff)
         if request.user.oddiy_admin:
             return bool(request.user and request.user.oddiy_admin)
 
@@ -22,4 +20,5 @@ class IsOddiyAdminUser(permissions.BasePermission):
 class IsAdminUser(permissions.BasePermission):
 
     def has_permission(self, request, view):
-        return bool(request.user and request.user.is_staff)
+        if request.user.is_staff:
+            return bool(request.user and request.user.is_staff)
