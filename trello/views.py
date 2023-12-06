@@ -14,10 +14,6 @@ from .serializers import (
 
 
 
-
-
-
-
 class TugatilmaganViewSet(viewsets.ModelViewSet):
     
     permission_classes = [permissions.IsAdminUser]
@@ -27,10 +23,11 @@ class TugatilmaganViewSet(viewsets.ModelViewSet):
 
 
 class BajarilganBoardViewSet(viewsets.ModelViewSet):
-    
+
     permission_classes = [permissions.IsAdminUser]
     queryset = BajarilganBoard.objects.all()
     serializer_class = TugatilmaganBoardSerializer
+
 
 
 class ChekBoardViewSet(viewsets.ModelViewSet):
@@ -73,8 +70,6 @@ class AllBardAdminViewSet(viewsets.ModelViewSet):
             # source_instance2.save()
 
             source_instance.delete()
-            
-            
 
             return Response({"message": "Data moved successfully"})
         except Board.DoesNotExist:

@@ -4,6 +4,8 @@ from django.contrib.auth.models import AbstractUser
 
 from rest_framework_simplejwt.tokens import RefreshToken
 
+from mptt.fields import TreeForeignKey
+from mptt.models import MPTTModel
 
 class CustomUser(AbstractUser):
 
@@ -18,6 +20,18 @@ class CustomUser(AbstractUser):
 
 
 
+class Departaments(MPTTModel):
+    title = models.CharField(max_length=233) # Dep name 
+    users = models.ManyToManyField(to=CustomUser, related_name="users")
+    
+    parent = TreeForeignKey('self', on_delete=models.CASCADE, blank=True, null=True, related_name='children')
+    
+
+    def __str__(self) -> str:
+        return self.title 
+
+
+
 class Notification(models.Model):
     user = models.ForeignKey(to=CustomUser, on_delete=models.CASCADE, null=True, blank=True)
     message = models.TextField()
@@ -26,5 +40,6 @@ class Notification(models.Model):
 
     def __str__(self):
         return self.message
+
 
 

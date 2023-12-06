@@ -1,6 +1,6 @@
 
 from rest_framework import serializers
-from .models import CustomUser, Notification
+from .models import CustomUser, Departaments, Notification
 from django.contrib import auth
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
@@ -11,6 +11,13 @@ class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ('id', 'username', 'email', 'profile_image', 'full_name', 'first_name', 'last_name')
+
+
+
+class DepartamentsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Departaments
+        fields = '__all__'
 
 
 
@@ -29,7 +36,6 @@ class RegisterSerializer(serializers.ModelSerializer):
         return attrs
     def create(self, validated_data):
         return CustomUser.objects.create_user(**validated_data)
-
 
 
 
@@ -69,7 +75,6 @@ class LogoutSerializer(serializers.Serializer):
             RefreshToken(self.token).blacklist()
         except TokenError:
             self.fail('bad_token')
-
 
 
 
