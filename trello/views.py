@@ -5,10 +5,10 @@ from rest_framework.authentication import SessionAuthentication
 
 from trello.permissions import IsAdminUser, IsAdminUserOrReadOnly, IsOddiyAdminUser
 
-from users.models import CustomUser
+from users.models import CustomUser, Departaments
 from .models import BajarilganBoard, Board, ChekBoard, TugatilmaganBoard, BajarilmaganBoard, Comment, List, Card
 from .serializers import (
-    BoardSerializer, ChekBoardSerializer, TugatilmaganBoardSerializer, BajarilmaganBoardSerializer, CommentSerializer, 
+    BoardSerializer, ChekBoardSerializer, DepartamentsSerializer, TugatilmaganBoardSerializer, BajarilmaganBoardSerializer, CommentSerializer, 
     CommentSerializerPOST, ListSerializer, CardSerializer
 )
 
@@ -35,6 +35,13 @@ class ChekBoardViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAdminUser]
     queryset = ChekBoard.objects.all()
     serializer_class = ChekBoardSerializer
+
+
+class DepartamentsViewSet(viewsets.ModelViewSet):
+    
+    permission_classes = (IsAdminUser,)
+    queryset = Departaments.objects.all()
+    serializer_class = DepartamentsSerializer
 
 
 

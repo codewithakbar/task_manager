@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CustomUser, Notification
+from .models import CustomUser, Departaments, Notification
 
 
 
@@ -18,3 +18,13 @@ class NotificationAdmin(admin.ModelAdmin):
     list_filter = ('is_read',)
     search_fields = ('user__username', 'message')
     ordering = ('-created_at',)
+
+
+@admin.register(Departaments)
+class DepartamentsAdmin(admin.ModelAdmin):
+    list_display = ('title', 'users')
+    search_fields = ('user__username', 'message')
+    ordering = ('-created_at',)
+
+
+

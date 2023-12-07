@@ -23,12 +23,11 @@ class CustomUser(AbstractUser):
 class Departaments(MPTTModel):
     title = models.CharField(max_length=233) # Dep name 
     users = models.ManyToManyField(to=CustomUser, related_name="users")
-    
+
     parent = TreeForeignKey('self', on_delete=models.CASCADE, blank=True, null=True, related_name='children')
-    
 
     def __str__(self) -> str:
-        return self.title 
+        return self.title
 
 
 
