@@ -172,3 +172,5 @@ trello/migrations/0002_comment.py
 trello/migrations/0002_tugatilganboard_bajarilmaganboard.py
 trello/migrations/0003_rename_tugatilganboard_bajarilganboard_and_more.py
 users/migrations/0002_customuser_oddiy_admin.py
+users/migrations/0003_departaments.py
+users/migrations/0004_departaments_image.py

@@ -7,8 +7,9 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from mptt.fields import TreeForeignKey
 from mptt.models import MPTTModel
 
-class CustomUser(AbstractUser):
 
+
+class CustomUser(AbstractUser):
     email = models.EmailField(max_length=255, unique=True, db_index=True)
     profile_image = models.ImageField(upload_to='profile/%Y/%m/%d', null=True, blank=True)
     full_name = models.CharField(max_length=233, null=True, blank=True)
@@ -22,8 +23,8 @@ class CustomUser(AbstractUser):
 
 class Departaments(MPTTModel):
     title = models.CharField(max_length=233) # Dep name 
-    users = models.ManyToManyField(to=CustomUser, related_name="users")
-
+    users = models.ManyToManyField(to=CustomUser, related_name="users_dep")
+    image = models.ImageField(upload_to='departament/%Y/%m/%d', null=True, blank=True)
     parent = TreeForeignKey('self', on_delete=models.CASCADE, blank=True, null=True, related_name='children')
 
     def __str__(self) -> str:

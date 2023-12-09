@@ -1,6 +1,8 @@
 from django.contrib import admin
 from .models import CustomUser, Departaments, Notification
 
+from mptt.admin import DraggableMPTTAdmin
+
 
 
 @admin.register(CustomUser)
@@ -21,10 +23,9 @@ class NotificationAdmin(admin.ModelAdmin):
 
 
 @admin.register(Departaments)
-class DepartamentsAdmin(admin.ModelAdmin):
-    list_display = ('title', 'users')
-    search_fields = ('user__username', 'message')
-    ordering = ('-created_at',)
-
+class DepartamentsAdmin(DraggableMPTTAdmin):
+    list_display = ('title', 'users', 'image')
+    mptt_indent_field = "title"
+    list_display = ('tree_actions', 'indented_title')
 
 
