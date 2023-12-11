@@ -44,8 +44,13 @@ class DepartamentsViewSet(viewsets.ModelViewSet):
     serializer_class = DepartamentsSerializer
 
 
+class AddDepUsers(viewsets.ModelViewSet):
+    
+    permission_classes = (IsAdminUser,)
+    queryset = Departaments.objects.all()
+    serializer_class = DepartamentsSerializer
 
-
+    
 
 # Admin metodi
 
