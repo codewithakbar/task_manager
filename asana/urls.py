@@ -28,7 +28,7 @@ from rest_framework_simplejwt.views import (
 )
 from trello.views import AllBardAdminViewSet, AllBardUserViewSet, BajarilganBoardViewSet, BoardSessionViewSet, BoardViewSet, CardViewSet, ChekBoardViewSet, CommentViewSet, CommentViewSetPOST, CreateCommentView, DepartamentsViewSet, ListViewSet, ListAllViewSet, CardAllViewSet, TugatilmaganViewSet, UserBoardSessionViewSet, UserBoardUsers
 
-from users.views import CustomUserDetailView, CustomUserListCreateView, MarkNotificationAsReadView, NotificationListView, RegisterView, LoginView, LogoutAPIView, UserProfileDetailView, UserProfileViewSet
+from users.views import CustomUserDetailView, CustomUserListCreateView, MarkNotificationAsReadView, NotificationListView, RegisterView, LoginView, LogoutAPIView, UserProfileDetailView, UserProfileViewSet, UserToAdminViewSet
 from rest_framework.authtoken.views import obtain_auth_token
 
 
@@ -61,6 +61,7 @@ router.register(r'cards/(?P<category_id>\d+)', CardViewSet, basename='cardd')
 
 router.register(r'userprofile/(?P<category_id>\d+)', UserProfileViewSet, basename='userprofile')
 router.register(r'user/boards/(?P<user_id>\d+)', UserBoardSessionViewSet, basename='boardsseesiion')
+router.register(r'user-to-admin', UserToAdminViewSet, basename='user-to-admin')
 
 # router.register(r'cards', CardViewSet)
 

@@ -25,6 +25,9 @@ from django.http import JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_exempt
 
+from trello.permissions import IsAdminUser, IsAdminUserOrReadOnly, IsOddiyAdminUser
+
+
 from knox.views import LoginView as KnoxLoginView
 
 
@@ -37,6 +40,27 @@ class UserProfileViewSet(viewsets.ModelViewSet):
         category_id = self.kwargs['category_id']
         queryset = CustomUser.objects.filter(id=category_id)
         return queryset
+
+
+class UserToAdminViewSet(viewsets.ModelViewSet):
+    serializer_class = CustomUserSerializer
+    permission_classes = [IsAdminUser]
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        
+        request.data['oddiy_admin'] = True
+        
+        serializer = self.get_serializer(instance, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+
+        return Response(serializer.data)
+
+    def perform_update(self, serializer):
+        serializer.save()
+
 
 
 class UserProfileDetailView(GenericAPIView, RetrieveModelMixin, UpdateModelMixin):
