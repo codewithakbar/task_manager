@@ -8,13 +8,14 @@ from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.generics import GenericAPIView
 from rest_framework.mixins import RetrieveModelMixin, UpdateModelMixin
+from rest_framework.decorators import action
 
 
 
 
 from .permissions import IsNotStaffUser
 from users.models import CustomUser, Notification
-from .serializers import CustomUserSerializer, NotificationSerializer, RegisterSerializer,LoginSerializer,LogoutSerializer
+from .serializers import CustomUserForAdminSerializer, CustomUserSerializer, NotificationSerializer, RegisterSerializer,LoginSerializer,LogoutSerializer
 
 
 from django.utils.decorators import method_decorator
@@ -44,22 +45,35 @@ class UserProfileViewSet(viewsets.ModelViewSet):
 
 class UserToAdminViewSet(viewsets.ModelViewSet):
     serializer_class = CustomUserSerializer
-    permission_classes = [IsAdminUser]
+    permission_classes = [permissions.IsAdminUser]
 
-    def update(self, request, *args, **kwargs):
-        partial = kwargs.pop('partial', False)
+    def get_queryset(self):
+        user_id = self.kwargs['pk']
+        return CustomUser.objects.filter(id=user_id)
+
+    @action(detail=True, methods=['PUT'])
+    def user_to_admin(self, request, pk=None):
         instance = self.get_object()
         
-        request.data['oddiy_admin'] = True
-        
-        serializer = self.get_serializer(instance, data=request.data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_update(serializer)
+        user_id = pk
 
-        return Response(serializer.data)
+        if user_id is not None:
+            request.data['oddiy_admin'] = True
 
-    def perform_update(self, serializer):
-        serializer.save()
+            serializer = self.get_serializer(instance, data=request.data)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+
+            return Response(serializer.data)
+        else:
+            return Response({"message": "User ID is missing in the request"}, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+class CustomUserDetail(generics.RetrieveUpdateAPIView):
+    queryset = CustomUser.objects.all()
+    serializer_class = CustomUserForAdminSerializer
+    lookup_field = 'username'
 
 
 

@@ -28,7 +28,7 @@ from rest_framework_simplejwt.views import (
 )
 from trello.views import AllBardAdminViewSet, AllBardUserViewSet, BajarilganBoardViewSet, BoardSessionViewSet, BoardViewSet, CardViewSet, ChekBoardViewSet, CommentViewSet, CommentViewSetPOST, CreateCommentView, DepartamentsViewSet, ListViewSet, ListAllViewSet, CardAllViewSet, TugatilmaganViewSet, UserBoardSessionViewSet, UserBoardUsers
 
-from users.views import CustomUserDetailView, CustomUserListCreateView, MarkNotificationAsReadView, NotificationListView, RegisterView, LoginView, LogoutAPIView, UserProfileDetailView, UserProfileViewSet, UserToAdminViewSet
+from users.views import CustomUserDetail, CustomUserDetailView, CustomUserListCreateView, MarkNotificationAsReadView, NotificationListView, RegisterView, LoginView, LogoutAPIView, UserProfileDetailView, UserProfileViewSet, UserToAdminViewSet
 from rest_framework.authtoken.views import obtain_auth_token
 
 
@@ -61,7 +61,7 @@ router.register(r'cards/(?P<category_id>\d+)', CardViewSet, basename='cardd')
 
 router.register(r'userprofile/(?P<category_id>\d+)', UserProfileViewSet, basename='userprofile')
 router.register(r'user/boards/(?P<user_id>\d+)', UserBoardSessionViewSet, basename='boardsseesiion')
-router.register(r'user-to-admin', UserToAdminViewSet, basename='user-to-admin')
+# router.register(r'user-to-admin(?P<user_id>\d+)', UserToAdminViewSet, basename='user-to-adminas')
 
 # router.register(r'cards', CardViewSet)
 
@@ -80,6 +80,8 @@ urlpatterns = [
     path('users/', CustomUserListCreateView.as_view(), name='user-list'),
     path('users/<int:pk>/', CustomUserDetailView.as_view(), name='user-detail'),
     path('userprofiles/<int:pk>/', UserProfileDetailView.as_view(), name='userprofile-detail'),
+    path('user-to-s/<int:pk>/', UserToAdminViewSet.as_view({'put': 'user_to_admin'}), name='user_to_admin'),
+    path('user-to-admin/<str:username>/', CustomUserDetail.as_view(), name='customuser-detail'),
 
 
     path('notifications/', NotificationListView.as_view(), name='notification-list'),

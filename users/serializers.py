@@ -13,6 +13,11 @@ class CustomUserSerializer(serializers.ModelSerializer):
         # fields = ('id', 'username', 'email', 'profile_image', 'full_name', 'first_name', 'last_name')
         fields = '__all__'
 
+class CustomUserForAdminSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        # fields = ('id', 'username', 'email', 'profile_image', 'full_name', 'first_name', 'last_name')
+        fields = ("oddiy_admin", "username")
 
 
 class DepartamentsSerializer(serializers.ModelSerializer):
