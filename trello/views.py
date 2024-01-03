@@ -64,9 +64,30 @@ class UserBoardUsers(viewsets.ModelViewSet):
 
 class AllBardAdminViewSet(viewsets.ModelViewSet):
     """Boardagi hamma objectni oladi"""
-    permission_classes = (permissions.IsAdminUser,)
+    permission_classes = (IsAdminUser,)
     queryset = Board.objects.filter(status_active=True)
     serializer_class = BoardSerializer
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        
+        self.perform_create(serializer)
+
+        board_instance = serializer.instance
+
+        user_ids = request.data.get('user', [])
+        for user_id in user_ids:
+            try:
+                user = CustomUser.objects.get(id=user_id)
+                board_instance.user.add(user)
+            except CustomUser.DoesNotExist:
+                return Response({"error": f"User with ID {user_id} does not exist"}, status=status.HTTP_400_BAD_REQUEST)
+
+        board_instance.save()
+
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 
     def boar_to_tugatilmagan(self, request, pk):
@@ -228,6 +249,28 @@ class BoardViewSet(viewsets.ModelViewSet):
 
     http_method_names = ['get', 'post', 'put', 'head', 'options', 'delete']
 
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        
+        self.perform_create(serializer)
+
+        board_instance = serializer.instance
+
+        user_ids = request.data.get('user', [])
+        for user_id in user_ids:
+            try:
+                user = CustomUser.objects.get(id=user_id)
+                board_instance.user.add(user)
+            except CustomUser.DoesNotExist:
+                return Response({"error": f"User with ID {user_id} does not exist"}, status=status.HTTP_400_BAD_REQUEST)
+
+        board_instance.save()
+
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
         instance.delete()
@@ -247,6 +290,20 @@ class BoardViewSet(viewsets.ModelViewSet):
             return Response({"message": "User invited successfully!"}, status=status.HTTP_200_OK)
         else:
             return Response({"message": "User ID is missing in the request"}, status=status.HTTP_400_BAD_REQUEST)
+
+    # def get_queryset(self):
+
+    #     user_id = self.kwargs['user_id']
+
+    #     board_instance = self.get_object()
+    #     user = CustomUser.objects.get(id=user_id)
+
+    #     board_instance.user.add(user)
+    #     board_instance.save()
+        
+    #     queryset = Board.objects.filter(user__id=user_id).order_by('-id')
+    #     return queryset 
+
 
 
 class BoardSessionViewSet(viewsets.ModelViewSet):
@@ -335,10 +392,9 @@ class GetBoardToOddiyAdmin(viewsets.ModelViewSet):
 
     serializer_class = BoardSerializer
 
-
     def get_queryset(self):
         user_id = self.kwargs['user_id']
         queryset = Board.objects.filter(user__id=user_id).order_by('-id')
         return queryset
-    
+
 
