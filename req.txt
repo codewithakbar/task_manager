@@ -1,5 +1,5 @@
 django==4.2.1
-pillow==9.3.0
+pillow
 djangorestframework==3.14.0
 djangorestframework-simplejwt
 dj_rest_auth

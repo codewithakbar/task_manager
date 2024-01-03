@@ -330,3 +330,15 @@ class CommentViewSetPOST(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     
+
+class GetBoardToOddiyAdmin(viewsets.ModelViewSet):
+
+    serializer_class = BoardSerializer
+
+
+    def get_queryset(self):
+        user_id = self.kwargs['user_id']
+        queryset = Board.objects.filter(user__id=user_id).order_by('-id')
+        return queryset
+    
+

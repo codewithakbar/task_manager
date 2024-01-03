@@ -26,7 +26,7 @@ from rest_framework import routers
 from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
-from trello.views import AllBardAdminViewSet, AllBardUserViewSet, BajarilganBoardViewSet, BoardSessionViewSet, BoardViewSet, CardViewSet, ChekBoardViewSet, CommentViewSet, CommentViewSetPOST, CreateCommentView, DepartamentsViewSet, ListViewSet, ListAllViewSet, CardAllViewSet, TugatilmaganViewSet, UserBoardSessionViewSet, UserBoardUsers
+from trello.views import AllBardAdminViewSet, AllBardUserViewSet, BajarilganBoardViewSet, BoardSessionViewSet, BoardViewSet, CardViewSet, ChekBoardViewSet, CommentViewSet, CommentViewSetPOST, CreateCommentView, DepartamentsViewSet, GetBoardToOddiyAdmin, ListViewSet, ListAllViewSet, CardAllViewSet, TugatilmaganViewSet, UserBoardSessionViewSet, UserBoardUsers
 
 from users.views import CustomUserDetail, CustomUserDetailView, CustomUserListCreateView, MarkNotificationAsReadView, NotificationListView, RegisterView, LoginView, LogoutAPIView, UserProfileDetailView, UserProfileViewSet, UserToAdminViewSet
 from rest_framework.authtoken.views import obtain_auth_token
@@ -47,6 +47,9 @@ router.register(r'all/departaments', DepartamentsViewSet, basename='admin_all_de
 router.register(r'all/tugatilmagan', TugatilmaganViewSet, basename='admin_all_tugatilmagan_board')
 router.register(r'all/bajarilgan', BajarilganBoardViewSet, basename='admin_all_bajarilgan_board')
 router.register(r'all/chek', ChekBoardViewSet, basename='chek')
+
+
+router.register(r'get/to/oddiyadmin/(?P<user_id>\d+)', GetBoardToOddiyAdmin, basename='get_to_admin')
 
 
 router.register(r'list', ListAllViewSet, basename='list_all_board')
