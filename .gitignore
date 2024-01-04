@@ -176,3 +176,4 @@ users/migrations/0003_departaments.py
 users/migrations/0004_departaments_image.py
 users/migrations/0005_customuser_kasbi.py
 users/migrations/0002_customuser_kasbi_customuser_oddiy_admin_departaments.py
+trello/migrations/0004_board_end_date_board_start_date_and_more.py

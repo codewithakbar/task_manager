@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 from users.models import CustomUser
 
@@ -9,11 +10,20 @@ from users.models import CustomUser
 class Board(models.Model):
     title = models.CharField(max_length=100)
     user = models.ManyToManyField(CustomUser)
-    status_active = models.BooleanField(default=True, blank=True, null=True)
-
+    status_active = models.BooleanField(default=True)
+    start_date = models.DateField(default=timezone.now)
+    end_date = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return self.title
+
+    def move_to_bajarilmagan_board(self):
+        if self.end_date and self.end_date < timezone.now().date():
+            bajarilmagan_board = BajarilmaganBoard.objects.create(
+                title=self.title,
+            )
+            bajarilmagan_board.user.set(self.user.all())
+            self.delete()
     
 
 class TugatilmaganBoard(models.Model):
