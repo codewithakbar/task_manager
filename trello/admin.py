@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Board, TugatilmaganBoard, Comment, List, Card, Member, BoardMember, Comment
+from .models import Board, TugatilmaganBoard, BajarilmaganBoard, Comment, List, Card, Member, BoardMember, Comment
 
 
 
@@ -10,6 +10,11 @@ class BoardAdmin(admin.ModelAdmin):
 
 @admin.register(TugatilmaganBoard)
 class TugatilmaganBoard(admin.ModelAdmin):
+    list_display = ('title',)
+
+
+@admin.register(BajarilmaganBoard)
+class BajarilmaganBoard(admin.ModelAdmin):
     list_display = ('title',)
 
 
