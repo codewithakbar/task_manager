@@ -115,6 +115,7 @@ class LoginView(ObtainAuthToken):
         user = serializer.validated_data['user']
         token, created = Token.objects.get_or_create(user=user)
         is_admin = user.is_staff
+        oddiy_admin = user.oddiy_admin
         
         profile_image_url = user.profile_image.url if user.profile_image else None
         if profile_image_url:
@@ -124,6 +125,7 @@ class LoginView(ObtainAuthToken):
             {
                 'token': token.key, 
                 'is_admin': is_admin,
+                'oddiy_admin': oddiy_admin,
                 'user_id': user.id,
                 'email': user.email,
                 'full_name': user.full_name,
