@@ -22,6 +22,9 @@ class Board(models.Model):
             self._move_to_bajarilmagan_board()
 
     def _move_to_bajarilmagan_board(self):
+
+        self.save()
+        
         bajarilmagan_board = BajarilmaganBoard.objects.create(
             title=self.title,
         )
