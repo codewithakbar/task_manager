@@ -255,7 +255,7 @@ class BoardViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        
+
         self.perform_create(serializer)
 
         board_instance = serializer.instance
@@ -279,7 +279,7 @@ class BoardViewSet(viewsets.ModelViewSet):
 
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-        
+
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
         instance.delete()
