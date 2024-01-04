@@ -191,7 +191,7 @@ class CustomUserListCreateView(generics.ListAPIView):
 
 class CustomUserDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CustomUserSerializer
-    permission_classes = [permissions.IsAdminUser]
+    permission_classes = [IsAdminUser]
 
     def get_queryset(self):
         return CustomUser.objects.filter(is_staff=False)
