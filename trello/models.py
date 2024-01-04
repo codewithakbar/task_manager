@@ -22,14 +22,15 @@ class Board(models.Model):
             self._move_to_bajarilmagan_board()
 
     def _move_to_bajarilmagan_board(self):
+        if not self.pk:
+            self.save()
 
-        self.save()
-        
         bajarilmagan_board = BajarilmaganBoard.objects.create(
             title=self.title,
         )
         bajarilmagan_board.user.set(self.user.all())
-        self.delete()
+
+        Board.objects.filter(pk=self.pk).delete()
     
 
 class TugatilmaganBoard(models.Model):
