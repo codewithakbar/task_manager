@@ -2,6 +2,8 @@ from rest_framework.response import Response
 from rest_framework import viewsets, permissions, status, generics
 from rest_framework.decorators import action
 from rest_framework.authentication import SessionAuthentication
+from django.utils import timezone
+
 
 from trello.permissions import IsAdminUser, IsAdminUserOrReadOnly, IsOddiyAdminUser
 
@@ -267,6 +269,13 @@ class BoardViewSet(viewsets.ModelViewSet):
                 return Response({"error": f"User with ID {user_id} does not exist"}, status=status.HTTP_400_BAD_REQUEST)
 
         board_instance.save()
+
+        if board_instance.end_date and board_instance.end_date < timezone.now().date():
+            bajarilmagan_board = BajarilmaganBoard.objects.create(
+                title=board_instance.title,
+            )
+            bajarilmagan_board.user.set(board_instance.user.all())
+            board_instance.delete()
 
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
