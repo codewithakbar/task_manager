@@ -11,6 +11,13 @@ class Board(models.Model):
     title = models.CharField(max_length=100)
     user = models.ManyToManyField(CustomUser)
     status_active = models.BooleanField(default=True)
+
+    bajarilmoqda = models.BooleanField(default=True)
+    tekshiruvda = models.BooleanField(default=False)
+    bajarilmagan = models.BooleanField(default=False)
+    kutulmoqda = models.BooleanField(default=False)
+    bajarilgan = models.BooleanField(default=False)
+
     start_date = models.DateField(default=timezone.now)
     end_date = models.DateField(null=True, blank=True)
 

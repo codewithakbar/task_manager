@@ -1,24 +1,38 @@
 from django.db import models
 
-from django.contrib.auth.models import AbstractUser
 
 from rest_framework_simplejwt.tokens import RefreshToken
+from django.utils.translation import gettext_lazy as _
+
 
 from mptt.fields import TreeForeignKey
 from mptt.models import MPTTModel
+from .managers import UserManager
+
+from django.contrib.auth.models import PermissionsMixin
+from django.contrib.auth.base_user import AbstractBaseUser
 
 
-
-class CustomUser(AbstractUser):
+class CustomUser(AbstractBaseUser, PermissionsMixin):
+    username = models.CharField(_('username'), max_length=30, unique=True)
     email = models.EmailField(max_length=255, unique=True, db_index=True)
     profile_image = models.ImageField(upload_to='profile/%Y/%m/%d', null=True, blank=True)
     full_name = models.CharField(max_length=233, null=True, blank=True)
     kasbi = models.CharField(max_length=233, null=True, blank=True)
-
+    is_active = models.BooleanField(_('active'), default=True)
+    is_staff = models.BooleanField(_('staff'), default=True)
     oddiy_admin = models.BooleanField(default=False)
 
-    def __str__(self):
-        return self.username
+    objects = UserManager()
+
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email']
+
+    class Meta:
+        verbose_name = _('user')
+        verbose_name_plural = _('users')
+
+
 
 
 
