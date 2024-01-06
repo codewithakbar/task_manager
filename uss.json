@@ -1,0 +1,498 @@
+[
+    {
+        "model": "users.customuser",
+        "pk": 1,
+        "fields": {
+            "username": "utu",
+            "email": "study@utu-ranch.uz",
+            "profile_image": null,
+            "full_name": "UTU",
+            "last_name": "RANCH",
+            "first_name": null,
+            "kasbi": null,
+            "is_active": true,
+            "is_staff": false,
+            "oddiy_admin": false
+        }
+    },
+    {
+        "model": "users.customuser",
+        "pk": 2,
+        "fields": {
+            "username": "davron",
+            "email": "davron.ruzmetov@utu-ranch.uz",
+            "profile_image": null,
+            "full_name": "Davron Ruzmetov",
+            "last_name": "Ruzmetov",
+            "first_name": "Davron",
+            "kasbi": null,
+            "is_active": true,
+            "is_staff": false,
+            "oddiy_admin": false
+        }
+    },
+    {
+        "model": "users.customuser",
+        "pk": 3,
+        "fields": {
+            "username": "baltayev",
+            "email": "b.jamol@utu-ranch.uz",
+            "profile_image": null,
+            "full_name": "Baltayev Jamol",
+            "last_name": "Jamol",
+            "first_name": "Baltayev",
+            "kasbi": null,
+            "is_active": true,
+            "is_staff": false,
+            "oddiy_admin": false
+        }
+    },
+    {
+        "model": "users.customuser",
+        "pk": 4,
+        "fields": {
+            "username": "alisher",
+            "email": "m.alisher@utu-ranch.uz",
+            "profile_image": null,
+            "full_name": "Alisher Matyakubov",
+            "last_name": "Matyakubov",
+            "first_name": "Alisher",
+            "kasbi": null,
+            "is_active": true,
+            "is_staff": false,
+            "oddiy_admin": false
+        }
+    },
+    {
+        "model": "users.customuser",
+        "pk": 5,
+        "fields": {
+            "username": "sherzod",
+            "email": "r.sherzod@utu-ranch.uz",
+            "profile_image": null,
+            "full_name": "Sherzod Ruzmetov",
+            "last_name": "Ruzmetov",
+            "first_name": "Sherzod",
+            "kasbi": null,
+            "is_active": true,
+            "is_staff": false,
+            "oddiy_admin": false
+        }
+    },
+    {
+        "model": "users.customuser",
+        "pk": 6,
+        "fields": {
+            "username": "bahodir",
+            "email": "a.bahodir@utu-ranch.uz",
+            "profile_image": null,
+            "full_name": "A. Bahodir",
+            "last_name": "Bahodir",
+            "first_name": "A.",
+            "kasbi": null,
+            "is_active": true,
+            "is_staff": false,
+            "oddiy_admin": false
+        }
+    },
+    {
+        "model": "users.customuser",
+        "pk": 7,
+        "fields": {
+            "username": "alisher_raximov",
+            "email": "r.alisher@utu-ranch.uz",
+            "profile_image": null,
+            "full_name": "Alisher Raximov",
+            "last_name": "Raximov",
+            "first_name": "Alisher",
+            "kasbi": null,
+            "is_active": true,
+            "is_staff": false,
+            "oddiy_admin": false
+        }
+    },
+    {
+        "model": "users.customuser",
+        "pk": 8,
+        "fields": {
+            "username": "sulaymon",
+            "email": "s.sulaymon@utu-ranch.uz",
+            "profile_image": null,
+            "full_name": "Sulaymon Sultanov",
+            "last_name": "Sultanov",
+            "first_name": "Sulaymon",
+            "kasbi": null,
+            "is_active": true,
+            "is_staff": false,
+            "oddiy_admin": false
+        }
+    },
+    {
+        "model": "users.customuser",
+        "pk": 9,
+        "fields": {
+            "username": "mavlonbek",
+            "email": "o.mavlonbek@utu-ranch.uz",
+            "profile_image": null,
+            "full_name": "Mavlonbek Otaboyev",
+            "last_name": "Otaboyev",
+            "first_name": "Mavlonbek",
+            "kasbi": null,
+            "is_active": true,
+            "is_staff": false,
+            "oddiy_admin": false
+        }
+    },
+    {
+        "model": "users.customuser",
+        "pk": 10,
+        "fields": {
+            "username": "gulbahor",
+            "email": "m.gulbahor@utu-ranch.uz",
+            "profile_image": null,
+            "full_name": "Gulbahor Masharipova",
+            "last_name": "Masharipova",
+            "first_name": "Gulbahor",
+            "kasbi": null,
+            "is_active": true,
+            "is_staff": false,
+            "oddiy_admin": false
+        }
+    },
+    {
+        "model": "users.customuser",
+        "pk": 11,
+        "fields": {
+            "username": "ludmila",
+            "email": "s.ludmila@utu-ranch.uz",
+            "profile_image": null,
+            "full_name": "Ludmila Sherimbetova",
+            "last_name": "Sherimbetova",
+            "first_name": "Ludmila",
+            "kasbi": null,
+            "is_active": true,
+            "is_staff": false,
+            "oddiy_admin": false
+        }
+    },
+    {
+        "model": "users.customuser",
+        "pk": 12,
+        "fields": {
+            "username": "dilusa",
+            "email": "t.dilusa@utu-ranch.uz",
+            "profile_image": null,
+            "full_name": "Dilusa Talipova",
+            "last_name": "Talipova",
+            "first_name": "Dilusa",
+            "kasbi": null,
+            "is_active": true,
+            "is_staff": false,
+            "oddiy_admin": false
+        }
+    },
+    {
+        "model": "users.customuser",
+        "pk": 13,
+        "fields": {
+            "username": "nargiza",
+            "email": "b.nargiza@utu-ranch.uz",
+            "profile_image": null,
+            "full_name": "Nargiza Bayjanova",
+            "last_name": "Bayjanova",
+            "first_name": "Nargiza",
+            "kasbi": null,
+            "is_active": true,
+            "is_staff": false,
+            "oddiy_admin": false
+        }
+    },
+    {
+        "model": "users.customuser",
+        "pk": 14,
+        "fields": {
+            "username": "dildora",
+            "email": "x.dildora@utu-ranch.uz",
+            "profile_image": null,
+            "full_name": "Dildora Xudayberganova",
+            "last_name": "Xudayberganova",
+            "first_name": "Dildora",
+            "kasbi": null,
+            "is_active": true,
+            "is_staff": false,
+            "oddiy_admin": false
+        }
+    },
+    {
+        "model": "users.customuser",
+        "pk": 15,
+        "fields": {
+            "username": "bahtiyor",
+            "email": "q.bahtiyor@utu-ranch.uz",
+            "profile_image": null,
+            "full_name": "Bahtiyor Qutliev",
+            "last_name": "Qutliev",
+            "first_name": "Bahtiyor",
+            "kasbi": null,
+            "is_active": true,
+            "is_staff": false,
+            "oddiy_admin": false
+        }
+    },
+    {
+        "model": "users.customuser",
+        "pk": 16,
+        "fields": {
+            "username": "madina",
+            "email": "k.madina@utu-ranch.uz",
+            "profile_image": null,
+            "full_name": "Madina Karimova",
+            "last_name": "Karimova",
+            "first_name": "Madina",
+            "kasbi": null,
+            "is_active": true,
+            "is_staff": false,
+            "oddiy_admin": false
+        }
+    },
+    {
+        "model": "users.customuser",
+        "pk": 17,
+        "fields": {
+            "username": "furqat",
+            "email": "k.furqat@utu-ranch.uz",
+            "profile_image": null,
+            "full_name": "Furqat Kuryozov",
+            "last_name": "Kuryozov",
+            "first_name": "Furqat",
+            "kasbi": null,
+            "is_active": true,
+            "is_staff": false,
+            "oddiy_admin": false
+        }
+    },
+    {
+        "model": "users.customuser",
+        "pk": 18,
+        "fields": {
+            "username": "jorabek",
+            "email": "m.jorabek@utu-ranch.uz",
+            "profile_image": null,
+            "full_name": "Jorabek Matyakubov",
+            "last_name": "Matyakubov",
+            "first_name": "Jorabek",
+            "kasbi": null,
+            "is_active": true,
+            "is_staff": false,
+            "oddiy_admin": false
+        }
+    },
+    {
+        "model": "users.customuser",
+        "pk": 19,
+        "fields": {
+            "username": "oydin",
+            "email": "s.oydin@utu-ranch.uz",
+            "profile_image": null,
+            "full_name": "Oydin Sadullayeva",
+            "last_name": "Sadullayeva",
+            "first_name": "Oydin",
+            "kasbi": null,
+            "is_active": true,
+            "is_staff": false,
+            "oddiy_admin": false
+        }
+    },
+    {
+        "model": "users.customuser",
+        "pk": 20,
+        "fields": {
+            "username": "izzatbek",
+            "email": "a.izzatbek@utu-ranch.uz",
+            "profile_image": null,
+            "full_name": "A. Izzatbek",
+            "last_name": "Izzatbek",
+            "first_name": "A.",
+            "kasbi": null,
+            "is_active": true,
+            "is_staff": false,
+            "oddiy_admin": false
+        }
+    },
+    {
+        "model": "users.customuser",
+        "pk": 21,
+        "fields": {
+            "username": "bexzod",
+            "email": "s.bexzod@utu-ranch.uz",
+            "profile_image": null,
+            "full_name": "Bexzod Saparboyev",
+            "last_name": "Saparboyev",
+            "first_name": "Bexzod",
+            "kasbi": null,
+            "is_active": true,
+            "is_staff": false,
+            "oddiy_admin": false
+        }
+    },
+    {
+        "model": "users.customuser",
+        "pk": 22,
+        "fields": {
+            "username": "doniyor",
+            "email": "a.doniyor@utu-ranch.uz",
+            "profile_image": null,
+            "full_name": "Doniyor Abdrimov",
+            "last_name": "Abdrimov",
+            "first_name": "Doniyor",
+            "kasbi": null,
+            "is_active": true,
+            "is_staff": false,
+            "oddiy_admin": false
+        }
+    },
+    {
+        "model": "users.customuser",
+        "pk": 23,
+        "fields": {
+            "username": "javoxir",
+            "email": "a.javoxir@utu-ranch.uz",
+            "profile_image": null,
+            "full_name": "Javoxir Ataboyev",
+            "last_name": "Ataboyev",
+            "first_name": "Javoxir",
+            "kasbi": null,
+            "is_active": true,
+            "is_staff": false,
+            "oddiy_admin": false
+        }
+    },
+    {
+        "model": "users.customuser",
+        "pk": 24,
+        "fields": {
+            "username": "akbar",
+            "email": "s.akbar@utu-ranch.uz",
+            "profile_image": null,
+            "full_name": "Akbar Satipov",
+            "last_name": "Satipov",
+            "first_name": "Akbar",
+            "kasbi": null,
+            "is_active": true,
+            "is_staff": false,
+            "oddiy_admin": false
+        }
+    },
+    {
+        "model": "users.customuser",
+        "pk": 25,
+        "fields": {
+            "username": "musobek",
+            "email": "r.musobek@utu-ranch.uz",
+            "profile_image": null,
+            "full_name": "Musobek Raximboyev",
+            "last_name": "Raximboyev",
+            "first_name": "Musobek",
+            "kasbi": null,
+            "is_active": true,
+            "is_staff": false,
+            "oddiy_admin": false
+        }
+    },
+    {
+        "model": "users.customuser",
+        "pk": 26,
+        "fields": {
+            "username": "temur",
+            "email": "e.temur@utu-ranch.uz",
+            "profile_image": null,
+            "full_name": "Temur Eshchanov",
+            "last_name": "Eshchanov",
+            "first_name": "Temur",
+            "kasbi": null,
+            "is_active": true,
+            "is_staff": false,
+            "oddiy_admin": false
+        }
+    },
+    {
+        "model": "users.customuser",
+        "pk": 27,
+        "fields": {
+            "username": "muxammadali",
+            "email": "y.muxammadali@utu-ranch.uz",
+            "profile_image": null,
+            "full_name": "Muxammadali Yusupov",
+            "last_name": "Yusupov",
+            "first_name": "Muxammadali",
+            "kasbi": null,
+            "is_active": true,
+            "is_staff": false,
+            "oddiy_admin": false
+        }
+    },
+    {
+        "model": "users.customuser",
+        "pk": 28,
+        "fields": {
+            "username": "zafarbek",
+            "email": "q.zafarbek@utu-ranch.uz",
+            "profile_image": null,
+            "full_name": "Zafarbek Qoʻchqarov",
+            "last_name": "Qoʻchqarov",
+            "first_name": "Zafarbek",
+            "kasbi": null,
+            "is_active": true,
+            "is_staff": false,
+            "oddiy_admin": false
+        }
+    },
+    {
+        "model": "users.customuser",
+        "pk": 29,
+        "fields": {
+            "username": "feruzbek",
+            "email": "s.feruzbek@utu-ranch.uz",
+            "profile_image": null,
+            "full_name": "Feruzbek S. Feruzbek",
+            "last_name": "S. Feruzbek",
+            "first_name": "S.",
+            "kasbi": null,
+            "is_active": true,
+            "is_staff": false,
+            "oddiy_admin": false
+        }
+    },
+    {
+        "model": "users.customuser",
+        "pk": 30,
+        "fields": {
+            "username": "gulzoda",
+            "email": "o.gulzoda@utu-ranch.uz",
+            "profile_image": null,
+            "full_name": "O. Gulzoda",
+            "last_name": "Gulzoda",
+            "first_name": "O.",
+            "kasbi": null,
+            "is_active": true,
+            "is_staff": false,
+            "oddiy_admin": false
+        }
+    },
+    {
+        "model": "users.customuser",
+        "pk": 31,
+        "fields": {
+            "username": "jamila",
+            "email": "o.jamila@utu-ranch.uz",
+            "profile_image": null,
+            "full_name": "Jamila Otajonova",
+            "last_name": "Otajonova",
+            "first_name": "Jamila",
+            "kasbi": null,
+            "is_active": true,
+            "is_staff": false,
+            "oddiy_admin": false
+        }
+    }
+]

@@ -14,11 +14,17 @@ from django.contrib.auth.base_user import AbstractBaseUser
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
+    # parent = TreeForeignKey('self', on_delete=models.CASCADE, blank=True, null=True, related_name='children')
+    # rght = models.IntegerField(blank=True, null=True)
+    # level = models.IntegerField(blank=True, null=True)
+    # lft = models.IntegerField(blank=True, null=True)
+    # tree_id = models.IntegerField(blank=True, null=True)
     username = models.CharField(_('username'), max_length=30, unique=True)
     email = models.EmailField(max_length=255, unique=True, db_index=True)
     profile_image = models.ImageField(upload_to='profile/%Y/%m/%d', null=True, blank=True)
     full_name = models.CharField(max_length=233, null=True, blank=True)
     last_name = models.CharField(max_length=222, null=True, blank=True)
+    first_name = models.CharField(max_length=222, null=True, blank=True)
     kasbi = models.CharField(max_length=233, null=True, blank=True)
     is_active = models.BooleanField(_('active'), default=True)
     is_staff = models.BooleanField(_('staff'), default=False)

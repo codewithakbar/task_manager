@@ -13,10 +13,11 @@ class CustomUserAdmin(UserAdmin):
     search_fields = ('username', 'email')
     list_filter = ('is_staff', 'is_active')
     ordering = ('-id',)
+    mptt_indent_field = "title"
 
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        (_('Personal Info'), {'fields': ('username', 'full_name', 'kasbi', 'profile_image', 'oddiy_admin', 'last_name')}),
+        (_('Personal Info'), {'fields': ('username', 'full_name', 'kasbi', 'profile_image', 'oddiy_admin', 'first_name', 'last_name')}),
         (_('Permissions'), {'fields': ('is_active', 'is_staff', 'groups', 'user_permissions')}),
     )
 
