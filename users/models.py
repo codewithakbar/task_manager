@@ -18,11 +18,11 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=255, unique=True, db_index=True)
     profile_image = models.ImageField(upload_to='profile/%Y/%m/%d', null=True, blank=True)
     full_name = models.CharField(max_length=233, null=True, blank=True)
+    last_name = models.CharField(max_length=222, null=True, blank=True)
     kasbi = models.CharField(max_length=233, null=True, blank=True)
     is_active = models.BooleanField(_('active'), default=True)
     is_staff = models.BooleanField(_('staff'), default=False)
     oddiy_admin = models.BooleanField(default=False)
-
     objects = UserManager()
 
     USERNAME_FIELD = 'username'
