@@ -118,6 +118,7 @@ class AllBardAdminViewSet(viewsets.ModelViewSet):
         try:
             source_inctance = Board.objects.get(pk=pk)
             source_inctance.bajarilgan = True
+            source_inctance.status_active = False
             source_inctance.save()
             
             return Response({"message": "Data moved successfully"})
