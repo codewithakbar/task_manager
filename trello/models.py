@@ -24,20 +24,13 @@ class Board(models.Model):
     def __str__(self):
         return self.title
 
-    def move_to_bajarilmagan_board(self):
-        if self.end_date and self.end_date < timezone.now().date():
-            self._move_to_bajarilmagan_board()
+    def is_time_expired(self):
 
-    def _move_to_bajarilmagan_board(self):
-        if not self.pk:
+        if self.end_date and timezone.now().date() > self.end_date:
+            self.bajarilmagan = True
             self.save()
-
-        bajarilmagan_board = BajarilmaganBoard.objects.create(
-            title=self.title,
-        )
-        bajarilmagan_board.user.set(self.user.all())
-
-        Board.objects.filter(pk=self.pk).delete()
+            return True
+        return False
     
 
 class TugatilmaganBoard(models.Model):

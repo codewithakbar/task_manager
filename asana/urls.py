@@ -98,6 +98,7 @@ urlpatterns = [
     path('remove_user/<int:pk>/boards/', AllBardAdminViewSet.as_view({'post': 'remove_user_in_board'}), name='remove_user'),
     path('to/<int:pk>/tugatilmagan/', AllBardAdminViewSet.as_view({'post': 'boar_to_tugatilmagan'}), name='boar_to_tugatilgan'),
     path('to/<int:pk>/bajarilganga/', AllBardAdminViewSet.as_view({'post': 'board_to_bajarilgan'}), name='board_to_bajarilgan'),
+    path('to/<int:pk>/bajarilmagan/', AllBardAdminViewSet.as_view({'post': 'board_to_bajarilmagan'}), name='board_to_bajarilmagan'),
 
 
     # user

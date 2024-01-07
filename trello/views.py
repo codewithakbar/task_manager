@@ -27,7 +27,7 @@ class TugatilmaganViewSet(viewsets.ModelViewSet):
 class BajarilganBoardViewSet(viewsets.ModelViewSet):
 
     permission_classes = [permissions.IsAdminUser]
-    queryset = BajarilganBoard.objects.all()
+    queryset = Board.objects.filter(bajarilgan=True)
     serializer_class = TugatilmaganBoardSerializer
 
 
@@ -117,15 +117,24 @@ class AllBardAdminViewSet(viewsets.ModelViewSet):
     def board_to_bajarilgan(sekf, request, pk):
         try:
             source_inctance = Board.objects.get(pk=pk)
+            source_inctance.bajarilgan = True
+            source_inctance.save()
+            
+            return Response({"message": "Data moved successfully"})
 
-            target_instance = BajarilganBoard(title=source_inctance.title)
-            target_instance.save()
-
-
-            target_instance.user.set(source_inctance.user.all())
-
-            source_inctance.delete()
-
+        except Board.DoesNotExist:
+            return Response(
+                {"error": "SourceModel with the specified ID does not exist"},
+                status=status.HTTP_404_NOT_FOUND
+            )
+        
+    def board_to_bajarilmagan(sekf, request, pk):
+        try:
+            source_inctance = Board.objects.get(pk=pk)
+            source_inctance.bajarilmagan = True
+            source_inctance.status_active = False
+            source_inctance.save()
+            
             return Response({"message": "Data moved successfully"})
 
         except Board.DoesNotExist:
@@ -250,6 +259,22 @@ class BoardViewSet(viewsets.ModelViewSet):
     serializer_class = BoardSerializer
 
     http_method_names = ['get', 'post', 'put', 'head', 'options', 'delete']
+
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.is_time_expired()
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
+
+
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.is_time_expired()
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
 
 
     def create(self, request, *args, **kwargs):
