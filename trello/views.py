@@ -261,7 +261,6 @@ class BoardViewSet(viewsets.ModelViewSet):
 
     http_method_names = ['get', 'post', 'put', 'head', 'options', 'delete']
 
-
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
         instance.is_time_expired()
@@ -296,15 +295,10 @@ class BoardViewSet(viewsets.ModelViewSet):
 
         board_instance.save()
 
-        if board_instance.end_date and board_instance.end_date < timezone.now().date():
-            bajarilmagan_board = BajarilmaganBoard.objects.create(
-                title=board_instance.title,
-            )
-            bajarilmagan_board.user.set(board_instance.user.all())
-            board_instance.delete()
 
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()

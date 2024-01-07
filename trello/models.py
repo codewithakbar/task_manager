@@ -2,8 +2,10 @@ from django.db import models
 from django.utils import timezone
 
 from users.models import CustomUser
+from datetime import datetime
 
-
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 
 """ ################################   Boardlar   #################################### """
 
@@ -18,19 +20,31 @@ class Board(models.Model):
     kutulmoqda = models.BooleanField(default=False)
     bajarilgan = models.BooleanField(default=False)
 
-    start_date = models.DateField(default=timezone.now)
-    end_date = models.DateField(null=True, blank=True)
+    start_date = models.DateTimeField(null=True, blank=True)
+    end_date = models.DateTimeField(null=True, blank=True)
+
+    # end_date = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
         return self.title
 
-    def is_time_expired(self):
+    def formatted_end_date(self):
+        if self.end_date:
+            return self.end_date.strftime("%Y-%m-%dT%H:%M")
+        return None
 
-        if self.end_date and timezone.now().date() > self.end_date:
+    def formatted_start_date(self):
+        if self.start_date:
+            return self.start_date.strftime("%Y-%m-%dT%H:%M")
+        return None
+
+    def is_time_expired(self):
+        if self.end_date and self.start_date > self.end_date:
             self.bajarilmagan = True
             self.save()
             return True
         return False
+
     
 
 class TugatilmaganBoard(models.Model):

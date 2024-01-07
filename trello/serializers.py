@@ -1,3 +1,4 @@
+from datetime import datetime, timezone
 from rest_framework import serializers
 
 from users.models import Departaments
@@ -5,9 +6,18 @@ from users.serializers import CustomUserSerializer
 
 from .models import BajarilganBoard, Board, ChekBoard, TugatilmaganBoard, BajarilmaganBoard, Comment, List, Card
 
+class CustomDateTimeField(serializers.ReadOnlyField):
+    def to_representation(self, value):
+        if value is not None:
+            return value.strftime('%Y-%m-%d')
+        return None
 
-
+    
+    
 class BoardSerializer(serializers.ModelSerializer):
+    end_date = CustomDateTimeField(read_only=True)
+
+
     class Meta:
         model = Board
         fields = '__all__'
