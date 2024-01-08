@@ -22,6 +22,8 @@ class Board(models.Model):
 
     start_date = models.DateTimeField(null=True, blank=True)
     end_date = models.DateTimeField(null=True, blank=True)
+    date_now = models.DateTimeField(default=timezone.now)
+
 
     # end_date = models.DateTimeField(blank=True, null=True)
 
@@ -38,12 +40,16 @@ class Board(models.Model):
             return self.start_date.strftime("%Y-%m-%dT%H:%M")
         return None
 
+    def formatted_date_now(self):
+        if self.date_now:
+            return self.date_now.strftime("%Y-%m-%dT%H:%M")
+        return None
+
     def is_time_expired(self):
-        if self.end_date and self.start_date > self.end_date:
-            self.bajarilmagan = True
-            self.save()
+        if self.end_date and self.date_now > self.end_date:
             return True
         return False
+
 
     
 

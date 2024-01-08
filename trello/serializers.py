@@ -15,7 +15,7 @@ class CustomDateTimeField(serializers.ReadOnlyField):
     
     
 class BoardSerializer(serializers.ModelSerializer):
-    end_date = CustomDateTimeField(read_only=True)
+    # end_date = CustomDateTimeField(read_only=True)
 
 
     class Meta:

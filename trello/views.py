@@ -285,6 +285,16 @@ class BoardViewSet(viewsets.ModelViewSet):
 
         board_instance = serializer.instance
 
+        if board_instance.is_time_expired():
+            board_instance.status_active = False
+            board_instance.bajarilmoqda = False
+            board_instance.bajarilmagan = True
+        else:
+            board_instance.status_active = True
+            board_instance.bajarilmoqda = True
+            board_instance.bajarilmagan = False
+
+
         user_ids = request.data.get('user', [])
         for user_id in user_ids:
             try:
@@ -295,7 +305,7 @@ class BoardViewSet(viewsets.ModelViewSet):
 
         board_instance.save()
 
-
+        
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
