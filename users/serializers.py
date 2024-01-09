@@ -1,4 +1,3 @@
-
 from rest_framework import serializers
 from .models import CustomUser, Departaments, Notification
 from django.contrib import auth
@@ -12,6 +11,15 @@ class CustomUserSerializer(serializers.ModelSerializer):
         model = CustomUser
         # fields = ('id', 'username', 'email', 'profile_image', 'full_name', 'first_name', 'last_name')
         fields = '__all__'
+
+
+class CustomUserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        # fields = ('id', 'username', 'email', 'profile_image', 'full_name', 'first_name', 'last_name')
+        fields = '__all__'
+        exclude = ('password',)
+
 
 class CustomUserForAdminSerializer(serializers.ModelSerializer):
     class Meta:

@@ -15,7 +15,7 @@ from rest_framework.decorators import action
 
 from .permissions import IsNotStaffUser
 from users.models import CustomUser, Notification
-from .serializers import CustomUserForAdminSerializer, CustomUserSerializer, NotificationSerializer, RegisterSerializer,LoginSerializer,LogoutSerializer
+from .serializers import CustomUserForAdminSerializer, CustomUserProfileSerializer, CustomUserSerializer, NotificationSerializer, RegisterSerializer,LoginSerializer,LogoutSerializer
 
 
 from django.utils.decorators import method_decorator
@@ -78,7 +78,7 @@ class CustomUserDetail(generics.RetrieveUpdateAPIView):
 
 
 class UserProfileDetailView(GenericAPIView, RetrieveModelMixin, UpdateModelMixin):
-    serializer_class = CustomUserSerializer
+    serializer_class = CustomUserProfileSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
