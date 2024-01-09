@@ -20,4 +20,6 @@ class IsAdminUser(permissions.BasePermission):
 
     def has_permission(self, request, view):
         # return bool(request.user and request.user.is_staff or request.user.oddiy_admin)
-        return request.user and (request.user.is_staff or request.user.oddiy_admin)
+        if request.user.is_authenticated:
+            return request.user and (request.user.is_staff or request.user.oddiy_admin)
+        return False
